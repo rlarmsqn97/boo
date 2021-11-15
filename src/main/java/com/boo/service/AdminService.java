@@ -54,5 +54,14 @@ public class AdminService {
 		return dao.orderView(order);
 	}
 	
+	// 배송 상태
+	public void delivery(OrderVO order) throws Exception {
+		dao.delivery(order);
+	}
+	
+	// 상품 수량 조절
+	public void changeStock(ProductVO product) throws Exception {
+		dao.changeStock(product);
+	}
 
 }

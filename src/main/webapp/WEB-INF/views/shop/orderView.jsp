@@ -48,8 +48,8 @@
 			    <p><span>렌트카회사명</span>${orderView.rentCar}</p>
 			    <p><span>요구사항</span>${orderView.reQu}</p>
 			    <p><span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderView.amount}" /> 원</p>
-			   </c:if>
-			   
+			    <p><span>상태</span>${orderView.delivery}</p>
+			   </c:if>			   
 			  </c:forEach>
 			 </div>
 			 

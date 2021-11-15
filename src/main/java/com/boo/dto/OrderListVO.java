@@ -20,7 +20,16 @@ public class OrderListVO {
 	private String pdThumbImg;
 	private int pdPrice;
 	
+	private String delivery;
 	
+	
+	
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
 	public String getOrderName() {
 		return orderName;
 	}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boo.mappers.qnaMapper">
+
+	<!-- qna 목록 -->
+	<select id="list" resultType="com.board.dto.QnaDto">
+		select
+			bno, title, content, writer, regDate, viewCnt
+		from qna_board
+	</select>
+	
+	<!-- qna 작성 -->
+	<insert id="write" parameterType="com.board.dto.QnaDto">
+		insert into
+			qna_board(title, content, writer)
+				values(#{title}, #{content}, #{writer})
+	</insert>
+	
+</mapper>

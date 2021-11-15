@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.boo.dto.OrderListVO;
 import com.boo.dto.OrderVO;
+import com.boo.dto.ProductVO;
 import com.boo.service.AdminService;
 
 @Controller
@@ -33,7 +34,7 @@ public class AdminController {
 		model.addAttribute("orderList",orderList);
 	}
 	
-	// 주문 상세 목록
+	// 주문 상세 목록 
 	@RequestMapping(value = "/orderView", method = RequestMethod.GET)
 	public void getOrderList(@RequestParam("n") String orderId,OrderVO order, Model model) throws Exception {
 		order.setOrderId(orderId);
@@ -41,5 +42,25 @@ public class AdminController {
 		
 		model.addAttribute("orderView",orderView);
 	}
+	
+	// 주문 상세 목록 - 상태 변경
+	@RequestMapping(value = "/orderView", method = RequestMethod.POST)
+	public String delivery(OrderVO order) throws Exception {
+		
+		service.delivery(order);
+		
+		List<OrderListVO> orderView = service.orderView(order);
+		ProductVO product = new ProductVO();
+		
+		for(OrderListVO i : orderView) {
+			product.setPdNum(i.getPdNum());
+			product.setPdStock(i.getCartStock());
+			service.changeStock(product);
+		}
+		
+		
+		return "redirect:/admin/orderList";
+	}
 
+	
 }

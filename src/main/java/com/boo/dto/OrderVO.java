@@ -11,9 +11,14 @@ public class OrderVO {
 	private Date orderDate;
 	private String reQu;
 	private String orderName;
+	private String delivery;
 	
-	
-	
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
 	public String getOrderName() {
 		return orderName;
 	}

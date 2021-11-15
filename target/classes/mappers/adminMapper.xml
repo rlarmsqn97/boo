@@ -65,14 +65,14 @@
 	<!-- 주문 목록 -->
 	<select id="orderList" resultType="com.boo.dto.OrderVO">
 		select
-			orderId, userId, rentCar, amount, orderDate, orderPhon
+			orderId, userId, rentCar, amount, orderDate, orderPhon, delivery
 		from boo_order
 	</select>
 	
 	<!-- 특정 주문 목록 -->
 	<select id="orderView" resultType="com.boo.dto.OrderListVO">
 		select
-			o.orderId, o.userId, o.rentCar,o,orderPhon, o.orderName, o.amount, o.orderDate, o.reQu,
+			o.orderId, o.userId, o.rentCar, o.orderPhon, o.orderName, o.amount, o.orderDate, o.reQu, o.delivery,
 			d.orderDetailsNum, d.pdNum, d.cartStock,
 			g.pdName, g.pdThumbImg, g.pdPrice
 		from boo_order o
@@ -81,6 +81,28 @@
 			inner join product g
 				on d.pdNum = g.pdNum
 		where o.orderId = #{orderId}		
+	</select>
+	
+	<!-- 배송 상태 -->
+	<update id="delivery">
+		update boo_order
+			set delivery = #{delivery}
+		where orderId = #{orderId}
+	</update>
+	
+	<!-- 상품 수량 조절 -->
+	<update id="changeStock">
+		update product 
+			set pdStock = pdStock - #{pdStock}
+		where pdNum = #{pdNum}
+	</update>
+	
+	<!-- 상품 수량 조절 보조 -->
+	<select id="changeStock_sub" resultType="com.boo.dto.OrderDetailVO">
+		select
+			orderId, pdNum, cartStock
+		from order_detail
+			where orderId = #{orderId}
 	</select>
 	
 </mapper>

@@ -60,6 +60,7 @@
    <p><span>렌트카회사명 </span>${orderList.rentCar}</p>
    <p><span>요청사항 </span>${orderList.reQu}</p>
    <p><span>가격</span><fmt:formatNumber pattern="###,###,###" value="${orderList.amount}" /> 원</p>
+   <p><span>상태</span>${orderList.delivery}</p>
   </div>
   </li>
   </c:forEach>
