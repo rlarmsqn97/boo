@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace ="com.boo.mappers.adminMapper">
+
+		<!-- 카테고리 호출 -->
+		<select id="category" resultType="com.boo.dto.CategoryVO">
+			WITH recursive cte AS (
+			SELECT cateName, cateCode, cateCodeRef, 1 AS level
+			FROM category
+			WHERE cateCodeRef IS null
+			UNION all
+			SELECT p.cateName, p.cateCode, p.cateCodeRef, 1 + LEVEL AS level
+			FROM category p
+			INNER JOIN cte
+			ON p.cateCodeRef = cte.cateCode
+			)
+			SELECT cateName, cateCode, cateCodeRef, LEVEL FROM cte;
+		</select>
+	<!-- 상품 등록 -->
+	<insert id="register">
+		 insert into product (pdNum, pdName, cateCode, pdPrice, pdDes, pdAge, pdImg, pdThumbImg, pdStock)
+		    		 values (NULL, #{pdName}, #{cateCode},#{pdPrice}, #{pdDes}, #{pdAge}, #{pdImg}, #{pdThumbImg}, #{pdStock})
+	</insert>
+	
+	<!-- 상품 목록 --> 
+	<select id="productlist" resultType="com.boo.dto.ProductVO">
+		 select
+		   pdNum, pdName, pdPrice, pdAge, pdThumbImg
+		    from product
+		        order by pdNum desc
+	</select>
+	
+	<!-- 상품 조회 + 카테고리 조인-->
+	<select id="productView" resultType="com.boo.dto.ProductViewVO">
+		 select
+		     g.pdNum, g.pdName, g.cateCode, c.cateCodeRef, c.cateName, pdPrice, pdAge,pdDes, pdImg, pdDate, g.pdImg, g.pdThumbImg
+		         from product g
+		             inner join category c
+		                 on g.cateCode = c.cateCode          
+		            where g.pdNum = #{pdNum}
+	</select>
+	
+	<!-- 상품 수정 -->
+		<update id="pdModify">
+		 update product
+		     set
+		         pdName = #{pdName},
+		         cateCode = #{cateCode},
+		         pdPrice = #{pdPrice},		     
+		         pdDes = #{pdDes},
+		         pdAge = #{pdAge},
+		         pdImg = #{pdImg},
+		         pdThumbImg = #{pdThumbImg}
+		     where pdNum = ${pdNum}
+		</update>
+		
+		<!-- 상품 삭제 -->
+	<delete id="pdDelete">
+	 delete from
+	     product
+	 where pdNum = #{pdNum}
+	</delete>
+	
+	<!-- 주문 목록 -->
+	<select id="orderList" resultType="com.boo.dto.OrderVO">
+		select
+			orderId, userId, rentCar, amount, orderDate, orderPhon
+		from boo_order
+	</select>
+	
+	<!-- 특정 주문 목록 -->
+	<select id="orderView" resultType="com.boo.dto.OrderListVO">
+		select
+			o.orderId, o.userId, o.rentCar,o,orderPhon, o.orderName, o.amount, o.orderDate, o.reQu,
+			d.orderDetailsNum, d.pdNum, d.cartStock,
+			g.pdName, g.pdThumbImg, g.pdPrice
+		from boo_order o
+			inner join order_detail d
+				on o.orderId = d.orderId
+			inner join product g
+				on d.pdNum = g.pdNum
+		where o.orderId = #{orderId}		
+	</select>
+	
+</mapper>

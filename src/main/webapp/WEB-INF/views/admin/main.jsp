@@ -1,0 +1,120 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin_main</title>
+    <script src="https://kit.fontawesome.com/e6f78261b2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/resources/css/admin/adminnav.css">
+    <link rel="stylesheet" href="/resources/css/admin/admin_main.css">
+    <script src="/resources/admin/js/jquery.js"></script>
+</head>
+<body>
+<%@ include file="nav/admin_nav.jsp" %>
+    <nav th:replace="admin/admin_nav :: navFragment"></nav>
+    <section>
+        <div class="recent-user item">
+            <div class="item-caption">
+                <div class="item-title">최근 가입 회원</div>
+                <div class="more" th:onclick="'location.href=\''+ @{/admin/userList} + '\''">more +</div>
+            </div>
+            <div class="item-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>회원정보</th>
+                            <th>휴대전화</th>
+                            <th>가입일</th>
+                            <th>방문횟수</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <%--     <tr th:each="user:${memberList}">
+                            <td th:text = "${user.name} + '(' + ${user.loginId}+ ')'">홍길동(gildong000)</td>
+                            <td th:text = "${#strings.replace(user.phoneNumber, ',', '-')}">010-2222-6666</td>
+                            <td th:text="${#temporals.format(user.createdAt, 'yyyy-MM-dd')}">2021-06-07</td>
+                            <td th:text = "${user.visitCount}">3</td>
+                        </tr> --%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="num-visitors item">
+            <div class="item-caption">
+                <div class="item-title">누적 방문자수</div>
+            </div>
+            <div class="item-content">
+                <div th:text="${numVisitors}">0</div>
+                <div>명</div>
+            </div>
+        </div>
+        <div class="recent-order item">
+            <div class="item-caption">
+                <div class="item-title">최근 주문</div>
+                <div class="more" th:onclick="'location.href=\''+ @{/admin/orderList} + '\''">more +</div>
+            </div>
+            <div class="item-content">
+                <table>
+                    <thead>
+                        <tr> 
+                            <th>구매자</th>
+                            <th>상품정보</th>
+                            <th>결제금액</th>
+                            <th>상태</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%-- <tr th:each="order : ${orderList}">
+                            <td th:text = "${order.name}">채창완</td>
+                            <td th:text = "${order.itemName}">홀릭 카고 조거팬츠</td>
+                            <td th:text="${#numbers.formatInteger(order.orderPrice, 0, 'COMMA')} + '원'">15,000원</td>
+                            <td th:if="${order.orderStatus.toString().equals('PAYWAITING')}">입금대기</td>
+                            <td th:if="${order.orderStatus.toString().equals('PRESHIP')}">배송준비중</td>
+                            <td th:if="${order.orderStatus.toString().equals('INSHIP')}">배송중</td>
+                            <td th:if="${order.orderStatus.toString().equals('COMPLETESHIP')}">배송완료</td>
+                            <td th:if="${order.orderStatus.toString().equals('ORDERCANCEL')}">주문취소</td>
+                            <td th:if="${order.orderStatus.toString().equals('ORDERCHANGE')}">교환</td>
+                            <td th:if="${order.orderStatus.toString().equals('ORDERREFUND')}">반품</td> --%>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="recent-item item">
+            <div class="item-caption">
+                <div class="item-title">최근 등록 상품</div>
+                <div class="more" th:onclick="'location.href=\''+ @{/admin/itemList} + '\''">more +</div>
+            </div>
+            <div class="item-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>상품사진</th>
+                            <th>상품명</th>
+                            <th>분류</th>
+                            <th>가격</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <%--   <tr th:each="item : ${itemList}">
+                            <td class="goods-img">
+                                <img src="./image/basket1.JPG" th:src="@{${item.imgUrl}}" alt="상품사진">
+                            </td>
+                            <td th:text = "${item.itemName} +'<'+ ${item.color}+'>'">
+                                소프트반팔셔츠
+                            </td>
+                            <td th:text = "${item.firstCategory}">
+                                BOTTOM
+                            </td>
+                            <td th:text="${#numbers.formatInteger(item.price, 0, 'COMMA')} + '원'">15,000원</td>
+                        </tr> --%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+    <script src="resources/admin/js/admin/admin_nav.js"></script>
+</body>
+</html>
