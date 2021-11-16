@@ -25,5 +25,19 @@ public class QnaService {
 		dao.write(dto);
 	}
 	
+	// qna 조회
+	public QnaDto view(int bno) throws Exception {
+		return dao.view(bno);
+	}
+	
+	// qna 수정
+	public void modify(QnaDto dto) throws Exception {
+		dao.modify(dto);
+	}
+	
+	// qna 삭제
+	public void delete(int bno) throws Exception {
+		dao.delete(bno);
+	}
 	
 }

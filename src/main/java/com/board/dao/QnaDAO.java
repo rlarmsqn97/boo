@@ -25,4 +25,20 @@ public class QnaDAO {
 	public void write(QnaDto dto) throws Exception {
 		sql.insert(namespace + ".write", dto);
 	}
+	
+	// qna 조회
+	public QnaDto view(int bno) throws Exception {
+		return sql.selectOne(namespace + ".view", bno);
+	}
+	
+	// qna 수정
+	public void modify(QnaDto dto) throws Exception {
+		sql.update(namespace + ".modify", dto);
+	}
+	
+	// qna 삭제
+	public void delete(int bno) throws Exception {
+		sql.delete(namespace + ".delete", bno);
+	}
 }
+

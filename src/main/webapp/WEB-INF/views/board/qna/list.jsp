@@ -1,6 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,8 +32,8 @@
 								<c:forEach items="${list}" var="list">
 								 <tr>
 								  <td>${list.bno}</td>
-								  <td>${list.title}</td>
-								  <td>${list.regDate}</td>
+								  <td><a href="/board/qna/view?bno=${list.bno}">${list.title}</a></td>
+								  <td><fmt:formatDate value="${list.regDate}" pattern="yyyy년-MM월-dd일" /></td>
 								  <td>${list.writer}</td>
 								  <td>${list.viewCnt}</td>
 								 </tr>
