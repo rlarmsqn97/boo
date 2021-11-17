@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.dto.QnaDto;
+import com.board.dto.QnaPageDto;
 import com.board.service.QnaService;
 
 @Controller
@@ -79,6 +80,29 @@ public class QnaController {
 		
 		return "redirect:/board/qna/list";
 	}
+	
+	// Qna 목록 + 페이징 추가
+	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
+	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
+		
+		QnaPageDto page = new QnaPageDto();
+		
+		page.setNum(num);
+		page.setCount(service.count());
+		
+		
+		List<QnaDto> list = null; 
+		list = service.listPage(page.getDisplayPost(), page.getPostNum());
+		
+		model.addAttribute("list",list);
+		
+		model.addAttribute("page", page);
+		
+		// 현재 페이지
+		model.addAttribute("select", num);
+		
+	}
+
 
 
 }

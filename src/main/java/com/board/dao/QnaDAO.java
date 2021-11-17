@@ -1,5 +1,6 @@
 package com.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -39,6 +40,21 @@ public class QnaDAO {
 	// qna 삭제
 	public void delete(int bno) throws Exception {
 		sql.delete(namespace + ".delete", bno);
+	}
+	
+	// qna 총 갯수
+	public int count() throws Exception {
+		return sql.selectOne(namespace + ".count");
+	}
+	
+	// qna 목록 + 페이징
+	public List<QnaDto> listPage(int displayPost, int postNum) throws Exception {
+		HashMap<String, Integer> data = new HashMap<String, Integer>();
+		
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+		
+		return sql.selectList(namespace + ".listPage", data);
 	}
 }
 

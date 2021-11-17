@@ -40,4 +40,14 @@ public class QnaService {
 		dao.delete(bno);
 	}
 	
+	// qna 총 갯수
+	public int count() throws Exception {
+		return dao.count();
+	}
+	
+	// qna 목록 + 페이징
+	public List<QnaDto> listPage(int displayPost, int postNum) throws Exception {
+		return dao.listPage(displayPost,  postNum);
+	}
+	
 }
