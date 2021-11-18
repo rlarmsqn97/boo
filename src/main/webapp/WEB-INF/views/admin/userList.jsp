@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="_csrf" th:content="${_csrf.token}"/>
-    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <title>admin userlist</title>
+    <title>회원목록</title>
     <script src="https://kit.fontawesome.com/e6f78261b2.js" crossorigin="anonymous"></script>
     <script src="/resources/js/jquery.min.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/admin_userlist.css">
@@ -14,7 +13,6 @@
 </head>
 <body>
 <%@include file = "nav/admin_nav.jsp" %>
-<nav th:replace="admin/admin_nav :: navFragment"></nav>
 <section>
     <form class= "search-form" id="search-form" method="GET" th:action="@{/admin/userList}">
         <select name="searchCondition" class="search-mode search-item" form="search-form">
@@ -29,40 +27,35 @@
     </form>
     <div class="user-box">
         <div class="num-searched-box">
-            총 <b class="num-searched"><%-- <span th:text="${memberList.totalElements}"> --%></span></b> 명의 회원이 검색되었습니다
+            총 <b class="num-searched"><%-- <span th:text="${memberList.totalElements}"> --%></b> 명의 회원이 검색되었습니다
         </div>
         <table class="user-table">
             <thead>
             <tr>
                 <th><input type="checkbox" class="checkbox-selectall"></th>
-                <th>기본정보</th>
-                <th>등급</th>
-                <th>휴대전화</th>
-                <th>방문횟수</th>
-                <th>주문횟수</th>
-                <th>적립금</th>
-                <th>가입일</th>
-                <th>상세보기</th>
-                <th>삭제</th>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>Email</th>
+                <th>가입 날짜</th>
+                <th>총 구매금액</th>
+                
             </tr>
             </thead>
+            
             <tbody>
-            <%-- <tr th:each="user : ${memberList}">
-                <td><input type="checkbox" class="checkbox-select"></td>
-                <td th:text = "${user.name} + '(' + ${user.loginId}+ ')'">채창완(sejchae)</td>
-                <td th:text = "${user.memberGrade}">일반회원</td>
-                <td th:text = "${#strings.replace(user.phoneNumber, ',', '-')}">010-1234-5678</td>
-                <td th:text = "${user.visitCount}">11</td>
-                <td th:text = "${user.orderCount}">2</td>
-                <td>2000원</td>
-                <td th:text="${#temporals.format(user.createdAt, 'yyyy-MM-dd')}">2021-05-12</td>
-                <td><input type="button" value="보기" class="userdetailbtn table-btn" th:onclick="|openUserDetail('${user.id}')|"></td>
-                <td><input type="button" value="삭제" class="deletebtn table-btn" th:onclick="|deleteUser('${user.id}')|"></td>
-                <input type="hidden" th:value="${user.id}">
-            </tr> --%>
+           
+            <tr>
+             <c:forEach items="${userList }" var="userList">
+              <td><input type="checkbox" class="checkbox-select"></td>
+              <td>${userList.userName}</td>
+              <td>${userList.userPhon}</td>
+              <td>${userList.userMail}</td>
+			  <td>${userList.regiDate }</td> 
+              <!-- <td><input type="button" value="보기" class="userdetailbtn table-btn"></td>
+              <td><input type="button" value="삭제" class="deletebtn table-btn"></td> -->
+            </c:forEach> 
+            </tr> 
             </tbody>
-
-
         </table>
 
         <div class="bottombtn-box">

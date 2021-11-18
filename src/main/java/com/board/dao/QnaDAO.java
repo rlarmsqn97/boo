@@ -17,11 +17,6 @@ public class QnaDAO {
 	
 	private static String namespace = "com.boo.mappers.qnaMapper";
 	
-	// qna 목록
-	public List<QnaDto> list() throws Exception {
-		return sql.selectList(namespace + ".list");
-	}
-	
 	// qna 작성
 	public void write(QnaDto dto) throws Exception {
 		sql.insert(namespace + ".write", dto);
@@ -42,19 +37,28 @@ public class QnaDAO {
 		sql.delete(namespace + ".delete", bno);
 	}
 	
-	// qna 총 갯수
-	public int count() throws Exception {
-		return sql.selectOne(namespace + ".count");
-	}
-	
-	// qna 목록 + 페이징
-	public List<QnaDto> listPage(int displayPost, int postNum) throws Exception {
-		HashMap<String, Integer> data = new HashMap<String, Integer>();
+	// qna 목록 + 페이징 + 검색
+	public List<QnaDto> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception {
+		
+		HashMap<String, Object> data = new HashMap<String, Object>();
 		
 		data.put("displayPost", displayPost);
 		data.put("postNum", postNum);
 		
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
+		
 		return sql.selectList(namespace + ".listPage", data);
+	}
+	
+	// qna 총 개수 + 검색
+	public int searchCount(String searchType, String keyword) throws Exception {
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		
+		data.put("searchType", searchType);
+		data.put("keyword", keyword);
+		
+		return sql.selectOne(namespace + ".searchCount", data);
 	}
 }
 

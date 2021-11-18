@@ -105,4 +105,12 @@
 			where orderId = #{orderId}
 	</select>
 	
+	<!-- 회원목록 -->
+	<select id="userList" resultType="com.boo.dto.UserVO">
+		select 
+			userName, userPhon, userMail, regiDate, userId
+		from user
+	</select>
+	
+	
 </mapper>

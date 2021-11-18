@@ -8,7 +8,7 @@
         <li class="menu-dropdown">
             <span>회원관리 <i class="fas fa-chevron-down"></i></span>
             <ul class="dropdown">
-                <li><a href="admin_userlist">회원목록</a></li>
+                <li><a href="/admin/userList">회원목록</a></li>
                 <li><a href="admin_userregister">회원등록</a></li>
                 <li><a href="admin_sms">sms발송</a></li>
             </ul>

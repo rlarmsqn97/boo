@@ -15,11 +15,6 @@ public class QnaService {
 	@Inject
 	private QnaDAO dao;
 	
-	// qna 목록
-	public List<QnaDto> list() throws Exception {
-		return dao.list();
-	}
-	
 	// qna 작성
 	public void write(QnaDto dto) throws Exception {
 		dao.write(dto);
@@ -40,14 +35,15 @@ public class QnaService {
 		dao.delete(bno);
 	}
 	
-	// qna 총 갯수
-	public int count() throws Exception {
-		return dao.count();
+	// qna 목록 + 페이징 + 검색
+	public List<QnaDto> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception {
+		return dao.listPageSearch(displayPost,  postNum, searchType, keyword);
 	}
 	
-	// qna 목록 + 페이징
-	public List<QnaDto> listPage(int displayPost, int postNum) throws Exception {
-		return dao.listPage(displayPost,  postNum);
+	// qna 갯수
+	public int searchCount(String searchType, String keyword) throws Exception {
+		return dao.searchCount(searchType, keyword);
 	}
+	
 	
 }

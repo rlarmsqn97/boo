@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.boo.dto.OrderListVO;
 import com.boo.dto.OrderVO;
 import com.boo.dto.ProductVO;
+import com.boo.dto.UserVO;
 import com.boo.service.AdminService;
 
 @Controller
@@ -60,6 +61,14 @@ public class AdminController {
 		
 		
 		return "redirect:/admin/orderList";
+	}
+	
+	// 회원목록
+	@RequestMapping(value = "/userList", method = RequestMethod.GET)
+	public void getUserList(Model model) throws Exception {
+		List<UserVO> userList = service.userList();
+		model.addAttribute("userList",userList);
+		System.out.println(userList);
 	}
 
 	

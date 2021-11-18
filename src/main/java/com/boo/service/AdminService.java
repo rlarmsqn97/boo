@@ -12,6 +12,7 @@ import com.boo.dto.OrderListVO;
 import com.boo.dto.OrderVO;
 import com.boo.dto.ProductVO;
 import com.boo.dto.ProductViewVO;
+import com.boo.dto.UserVO;
 
 @Service
 public class AdminService {
@@ -62,6 +63,11 @@ public class AdminService {
 	// 상품 수량 조절
 	public void changeStock(ProductVO product) throws Exception {
 		dao.changeStock(product);
+	}
+	
+	// 회원 목록
+	public List<UserVO> userList() throws Exception {
+		return dao.userList();
 	}
 
 }

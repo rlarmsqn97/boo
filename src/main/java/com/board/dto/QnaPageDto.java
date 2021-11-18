@@ -97,5 +97,33 @@ public class QnaPageDto {
 		
 		displayPost = (num - 1) * postNum;
 	}
+	
+	
+	public String getSearchTypeKeyword() {
+		
+		if(searchType.equals("") || keyword.equals("")) {
+			return "";
+		} else {
+			return "&searchType=" + searchType + "&keyword=" + keyword;
+		}
+	}
+	// 검색 타입과 검색어
+	private String searchType;
+	private String keyword;
+	
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	
+	
 
 }

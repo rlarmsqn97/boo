@@ -6,7 +6,7 @@ public class UserVO {
 	private String userName;
 	private String userPhon;
 	private String userMail;
-	private int regiDate;
+	private String regiDate;
 	private int verify;
 	public String getUserId() {
 		return userId;
@@ -38,10 +38,10 @@ public class UserVO {
 	public void setUserMail(String userMail) {
 		this.userMail = userMail;
 	}
-	public int getRegiDate() {
+	public String getRegiDate() {
 		return regiDate;
 	}
-	public void setRegiDate(int regiDate) {
+	public void setRegiDate(String regiDate) {
 		this.regiDate = regiDate;
 	}
 	public int getVerify() {

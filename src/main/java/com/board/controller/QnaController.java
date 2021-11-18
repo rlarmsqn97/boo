@@ -21,18 +21,6 @@ public class QnaController {
 	@Inject
 	QnaService service;
 	
-	// Qna 목록
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public void getList(Model model) throws Exception {
-		
-		List<QnaDto> list = null;
-		list = service.list();
-		
-		model.addAttribute("list", list);
-		
-		
-	}
-	
 	// Qna 작성
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public void getWrite() throws Exception {
@@ -46,7 +34,7 @@ public class QnaController {
 		
 		service.write(dto);
 		
-		return "redirect:/board/qna/list";
+		return "redirect:/board/qna/listPageSearch?num=1";
 	}
 	
 	// Qna 조회
@@ -78,21 +66,26 @@ public class QnaController {
 	public String getDelete(@RequestParam("bno") int bno) throws Exception {
 		service.delete(bno);
 		
-		return "redirect:/board/qna/list";
+		return "redirect:/board/qna/listPageSearch";
 	}
 	
-	// Qna 목록 + 페이징 추가
-	@RequestMapping(value = "/listPage", method = RequestMethod.GET)
-	public void getListPage(Model model, @RequestParam("num") int num) throws Exception {
+	// Qna 목록 + 페이징 추가 + 검색
+	@RequestMapping(value = "/listPageSearch", method = RequestMethod.GET)
+	public void getListPage(Model model, @RequestParam("num") int num, @RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
+			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) throws Exception {
 		
 		QnaPageDto page = new QnaPageDto();
 		
 		page.setNum(num);
-		page.setCount(service.count());
+		page.setCount(service.searchCount(searchType, keyword));
+		
+		// 검색 타입과 검색어
+		page.setSearchType(searchType);
+		page.setKeyword(keyword);
 		
 		
 		List<QnaDto> list = null; 
-		list = service.listPage(page.getDisplayPost(), page.getPostNum());
+		list = service.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
 		
 		model.addAttribute("list",list);
 		
@@ -100,6 +93,8 @@ public class QnaController {
 		
 		// 현재 페이지
 		model.addAttribute("select", num);
+		
+
 		
 	}
 
