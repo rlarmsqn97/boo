@@ -76,4 +76,5 @@ public class ShopDAO {
 	public List<OrderListVO> orderView(OrderVO order) throws Exception {
 		return sql.selectList(namespace + ".orderView", order);
 	}
+	
 }

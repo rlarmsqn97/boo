@@ -69,8 +69,8 @@ select
 	
 	<!-- 주문정보 -->
 	<insert id="orderInfo">
-		insert into boo_order(orderId, userId, rentCar, orderPhon, amount, reQu,orderName)
-			values(#{orderId}, #{userId}, #{rentCar}, #{orderPhon}, #{amount}, #{reQu},#{orderName})
+		insert into boo_order(orderId, userId, rentCar, orderPhon, amount, reQu, orderName, startDate, endDate )
+			values(#{orderId}, #{userId}, #{rentCar}, #{orderPhon}, #{amount}, #{reQu}, #{orderName}, #{startDate}, #{endDate})
 	</insert>
 	
 	<!-- 주문 상세 정보 -->
@@ -86,7 +86,7 @@ select
 	</delete>
 	
 	<select id="orderList" resultType="com.boo.dto.OrderVO">
-		select orderId, userId, rentCar, orderPhon, amount, orderDate,orderName,reQu, delivery
+		select orderId, userId, rentCar, orderPhon, amount, orderDate, orderName, reQu, delivery , startDate, endDate
 			from boo_order
 				where userId = #{userId}
 	</select>
@@ -104,4 +104,6 @@ select
 		where o.userId = #{userId}
 			and o.orderId = #{orderId}
 	</select>
+	
+
 </mapper>

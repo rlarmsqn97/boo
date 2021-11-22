@@ -59,7 +59,7 @@
 		              </span>
                  </div>
                	<div  class="container-lg py-5">
-					<button type="button" class="btn btn-secondary text-white" style="float:right;" onclick="location.href='write'">예약하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="button" class="btn btn-secondary text-yellow" style="float:right;" onclick="location.href='buy'">예약하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
 					<button type="button" class="btn btn-secondary text-white" style="float:right; margin-right:10px;" >장바구니</button>
 				</div>
             </div>
@@ -202,6 +202,7 @@
 		  });
  </script>
  
+ <!-- 장바구니 버튼 -->
  <script>
  	$(".btn.btn-secondary.text-white").click(function() {
  		var pdNum = ${view.pdNum};
@@ -241,6 +242,45 @@
  	});
  </script>
 
+  <!-- 예약하기 버튼 -->
+  <script>
+ 	$(".btn.btn-secondary.text-yellow").click(function() {
+ 		var pdNum = ${view.pdNum};
+ 		var cartStock = $(".numBox").val();
+ 		var startDate =  $.datepicker.formatDate("yy-mm-dd",$("#startDate").datepicker("getDate"));		
+ 		var endDate = $.datepicker.formatDate("yy-mm-dd",$("#endDate").datepicker("getDate"));
+ 		
+ 		console.log("pdNum = " + pdNum);
+ 		console.log("cartStock = " + cartStock);
+ 		console.log("startDate = " + startDate);
+ 		console.log("endDate = " + endDate);
+ 		
+ 		var data = {
+ 				pdNum : pdNum,
+ 				cartStock : cartStock,
+ 				startDate : startDate,
+ 				endDate : endDate
+ 		};
+ 		$.ajax({
+ 			url : "/shop/buy",
+ 			type : "post",
+ 			data : data,
+ 			success : function(result) {
+			if(result == 1){ 				
+ 				alert("카트 담기 성공");
+ 				$(".numBox").val("1");
+ 			} else {
+ 				alert("로그인해주세요")
+ 				$(".numBox").val("1");
+ 			  }
+ 			},
+ 			error : function() {
+ 				alert("담기 실패");
+ 			}	
+ 		});
+ 	});
+ </script>
+ 
 <script>
 	$(function () {
 	    $("#startDate").datepicker({

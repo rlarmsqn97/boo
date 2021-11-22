@@ -5,6 +5,7 @@ public class OrderDetailVO {
 	private String orderId;
 	private int pdNum;
 	private int cartStock;
+	
 	public int getOrderDetailsNum() {
 		return orderDetailsNum;
 	}

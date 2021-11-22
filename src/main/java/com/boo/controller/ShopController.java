@@ -64,7 +64,7 @@ public class ShopController {
 		if(user != null) {
 			cart.setUserId(user.getUserId());
 			service.addCart(cart);
-			result =1;
+			result = 1;
 		}
 		System.out.println(cart.getPdNum());
 		return result;		
@@ -84,9 +84,7 @@ public class ShopController {
 		map.put("sumMoney", sumMoney);	
 		System.out.println(sumMoney);
 		
-		return model;
-		
-		
+		return model;	
 	}
 	
 	// 카트 삭제
@@ -115,7 +113,7 @@ public class ShopController {
 		}
 	
 	
-	//주문
+	// 장바구니 주문
 	@RequestMapping(value = "/cart", method = RequestMethod.POST)
 	public String order(HttpSession session, OrderVO order, OrderDetailVO orderDetail,Model model) throws Exception {
 		UserVO user = (UserVO)session.getAttribute("user");
@@ -173,6 +171,45 @@ public class ShopController {
 		List<OrderListVO> orderView = service.orderView(order);
 		
 		model.addAttribute("orderView",orderView);
+	}
+	
+	// 단일 상품 주문
+	@RequestMapping(value = "/buy", method = RequestMethod.GET)
+	public void getBuy(HttpSession session,Model model) throws Exception{
+		UserVO user = (UserVO)session.getAttribute("user");
+		String userId = user.getUserId();
+
+	}
+	
+	// 단일 상품 주문
+	@RequestMapping(value = "/buy", method = RequestMethod.POST)
+	public String postBuy(HttpSession session,OrderDetailVO orderDetail, OrderVO order,Model model) throws Exception{
+		UserVO user = (UserVO)session.getAttribute("user");
+		String userId = user.getUserId();
+		model.addAttribute("user",user);
+		
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String subNum = "";
+		
+		for(int i = 1; i <= 6; i++) {
+			subNum += (int)(Math.random() * 10);
+		}
+		
+		String orderId = ymd + "_" + subNum;
+		order.setOrderId(orderId);
+		order.setUserId(userId);
+		
+		service.orderInfo(order);
+		
+		orderDetail.setOrderId(orderId);
+		service.orderInfo_Details(orderDetail);
+		
+		return "redirect:/shop/orderList";
+
+
 	}
 	
 	

@@ -12,7 +12,9 @@
          <%@ include file="../include/mainmenu.jsp" %>
          	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
          	
-         	
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>     	
      <style>
      	.orderInfo { border:5px solid #eee; padding:20px; display:none;}
 .orderInfo .inputArea { margin:10px 0; }
@@ -92,15 +94,16 @@
             </div>
         </section>
         <!-- Cart Page Section Begin -->
-        <div class="cart-page">
-            <div class="container">
-                <div class="cart-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" name="allCheck" id="allCheck" checked /></th>
-                                <!-- 상품 전체선택  -->
-                                <script>
+	<div class="cart-page">
+		<div class="container">
+			<div class="cart-table">
+				<table>
+					<thead>
+						<tr>
+							<th><input type="checkbox" name="allCheck" id="allCheck"
+								checked /></th>
+							<!-- 상품 전체선택  -->
+							<script>
                                     $("#allCheck").click(function () {
                                         var chk = $("#allCheck").prop("checked");
                                         if (chk) {
@@ -112,53 +115,47 @@
                                         }
                                     });
                                 </script>
-                                <th class="product-h">상품이미지</th>
-                                <th>상품명</th>
-                                <th>대여일</th>
-                                <th>반납일</th>
-                                <th>가격</th>
-                                <th>수량</th>
-                                <th>합계</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${cartList}" var="cartList">
-                                <tr>
-                                    <td class="product-close"><input type="checkbox" onClick="itemSum()"
-                                            class="chkbox" value="${cartList.pdPrice * cartList.cartStock}"
-                                            data-cartNum="${cartList.cartNum}" /></td>
-                                    <td class="product-col">
-                                        <img src="${cartList.pdThumbImg}" alt="${cartList.pdThumbImg}" style="width:60px;height:60px"/>
-                                    </td>
-                                    <td>
-                                    	<a href="/shop/productdetail?n=${cartList.pdNum}">${cartList.pdName}</a>
-                                    </td>
-                                    
-                                    <td>
-                                    	<h5>${cartList.startDate }</h5>
-                                    </td>
-                                    
-                                    <td>
-                                    	<h5>${cartList.endDate }</h5>
-                                    </td>
-                                    
-                                    
-                                    
-                                    <td class="price-col">
-                                        <fmt:formatNumber pattern="###,###,###" value="${cartList.pdPrice}" />
-                                        원
-                                    </td>
-                                    <td>
-                                        ${cartList.cartStock} 개
-                                    </td>
-                                    <td class="total">
-                                        <fmt:formatNumber pattern="###,###,###"
-                                            value="${cartList.pdPrice * cartList.cartStock}" /> 원
-                                    </td>
-                                    <td class="product-close" id="delete_${cartList.cartNum}_btn"
-                                        data-cartNum="${cartList.cartNum}">x</td>
-                                   <script>
+							<th class="product-h">상품이미지</th>
+							<th>상품명</th>
+							<th>대여일</th>
+							<th>반납일</th>
+							<th>가격</th>
+							<th>수량</th>
+							<th>합계</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${cartList}" var="cartList">
+							<tr>
+								<td class="product-close"><input type="checkbox"
+									onClick="itemSum()" class="chkbox"
+									value="${cartList.pdPrice * cartList.cartStock}"
+									data-cartNum="${cartList.cartNum}" /></td>
+								<td class="product-col"><img src="${cartList.pdThumbImg}"
+									alt="${cartList.pdThumbImg}" style="width: 60px; height: 60px" />
+								</td>
+								<td><a href="/shop/productdetail?n=${cartList.pdNum}">${cartList.pdName}</a>
+								</td>
+
+								<td>
+									<span>${cartList.startDate }</span>
+								</td>
+
+								<td>
+									<span>${cartList.endDate }</span>
+								</td>
+
+
+
+								<td class="price-col"><fmt:formatNumber
+										pattern="###,###,###" value="${cartList.pdPrice}" /> 원</td>
+								<td>${cartList.cartStock} 개</td>
+								<td class="total"><fmt:formatNumber pattern="###,###,###"
+										value="${cartList.pdPrice * cartList.cartStock}" /> 원</td>
+								<td class="product-close" id="delete_${cartList.cartNum}_btn"
+									data-cartNum="${cartList.cartNum}">x</td>
+								<script>
 									  $("#delete_${cartList.cartNum}_btn").click(function(){
 									   var confirm_val = confirm("정말 삭제하시겠습니까?");
 									   
@@ -183,48 +180,48 @@
 									   } 
 									  });
 								  </script>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                    <!-- 초기화면 상품 전체선택이지만 하나라도 체크박스 해제할 경우 이벤트  -->
-                    <script>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<!-- 초기화면 상품 전체선택이지만 하나라도 체크박스 해제할 경우 이벤트  -->
+				<script>
                         $(".chkbox").click(function () {
                             $("#allCheck").prop("checked", false);
                         });
                     </script>
-                    <c:if test="${empty cartList}">
-                        <c:set var="cart" value="false" />
-                        <div class="card border-light mb-3 text-center spad">
-                            <div class="card-header">
-                                <h3>카트에 상품이 없습니다.</h3>
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text">카트에 물건을 담고 이용해주세요!</p>
-                            </div>
- 
-                        </div>
-                    </c:if>
- 
-                </div>
-            </div>
-            <div class="shopping-method">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="total-info">
-                                <div class="total-table">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th class="total-cart">Total Cart</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="total-cart-p" id="total_sum"></td>
-                                                   <!-- 금액 총 합계  -->
-											        <script>		 
+				<c:if test="${empty cartList}">
+					<c:set var="cart" value="false" />
+					<div class="card border-light mb-3 text-center spad">
+						<div class="card-header">
+							<h3>카트에 상품이 없습니다.</h3>
+						</div>
+						<div class="card-body">
+							<p class="card-text">카트에 물건을 담고 이용해주세요!</p>
+						</div>
+
+					</div>
+				</c:if>
+
+			</div>
+		</div>
+		<div class="shopping-method">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="total-info">
+							<div class="total-table">
+								<table>
+									<thead>
+										<tr>
+											<th class="total-cart">Total Cart</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="total-cart-p" id="total_sum"></td>
+											<!-- 금액 총 합계  -->
+											<script>		 
 											            function itemSum() {
 											                var str = "";
 											                var sum = 0;
@@ -238,74 +235,76 @@
 											                $("#amount").val(sum);
 											            }
 											        </script>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <c:if test="${not empty cartList}">
-                                    <div class="row">
-                                        <div class="col-lg-12 text-right">
-                                            <button type="button" class="primary-btn chechout-btn"
-                                                id="orderModal" data-toggle="modal" data-target="#orderOpne">주문 정보 입력</button>
-                                                
-                                                <script>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<c:if test="${not empty cartList}">
+								<div class="row">
+									<div class="col-lg-12 text-right">
+										<button type="button" class="primary-btn chechout-btn"
+											id="orderModal" data-toggle="modal" data-target="#orderOpne">주문
+											정보 입력</button>
+
+										<script>
                                                 	$(".primary-btn.chechout-btn").click(function(){
                                                 		$(".orderInfo").slideDown();
                                                 		$(".primary-btn.chechout-btn").slideUp();
                                                 	});
                                                 </script>
-                                        </div>
-                                    </div>
-                                </c:if>
-                            </div>
-       <div class="orderInfo">                            
-		 <form role="form" method="post" autocomplete="off">
-		    
-		  <input type="hidden" name="amount" id="amount"/>
-		    
-		  <div class="inputArea">
-		   <label for="">예약자이름 :</label>
-		   <input type="text" name="orderName" id="orderName" value="${user.userName }" required="required" />
-		  </div>
-		  
-		  <div class="inputArea">
-		   <label for="orderPhon">예약자 번호 :</label>
-		   <input type="text" name="orderPhon" id="orderPhon" value="${user.userPhon }" required="required" />
-		  </div>
-		  
-		  
-		  <div class="inputArea">
-		   <label for="userAddr1">렌터카회사명 : </label>
-		   <input type="text" name="rentCar" id="rentCar"  required="required" />
-		  </div>
-		  
-		  <div class="inputArea">
-		   <label for="userAddr2">요청사항</label>
-		   <input type="text" name="reQu" id="reQu" required="required" />
-		  </div>
+									</div>
+								</div>
+							</c:if>
+						</div>
+						<div class="orderInfo">
+							<form role="form" method="post" autocomplete="off">
+								<c:forEach items="${cartList}" var="cartList">
+								<input type="hidden" name="startDate" id="startDate" value="${cartList.startDate }">
+								<input type="hidden" name="endDate" id="endDate" value="${cartList.endDate }">
+								</c:forEach>
+								<input type="hidden" name="amount" id="amount" />
+								
+								<div class="inputArea">
+									<label for="">예약자이름 :</label> <input type="text"
+										name="orderName" id="orderName" value="${user.userName }"
+										required="required" />
+								</div>
 
-		  <div class="inputArea">
-		   <button type="submit" class="order_btn">주문</button>
-		   <button type="button" class="cancel_btn">취소</button>
-		   <script>
-		   	$(".cancel_btn").click(function(){
-		   		$(".orderInfo").slideUp();
-		   		$(".primary-btn.chechout-btn").slideDown();
-		   	});
-		   </script> 
-		  </div>
-		  
-		  
-		 </form> 
+								<div class="inputArea">
+									<label for="orderPhon">예약자 번호 :</label> <input type="text"
+										name="orderPhon" id="orderPhon" value="${user.userPhon }"
+										required="required" />
+								</div>
+														
+								<div class="inputArea">
+									<label for="userAddr1">렌터카회사명 : </label> <input type="text"
+										name="rentCar" id="rentCar" required="required" />
+								</div>
+
+								<div class="inputArea">
+									<label for="userAddr2">요청사항</label> <input type="text"
+										name="reQu" id="reQu" required="required" />
+								</div>
+							
+								<div class="inputArea">
+									<button type="submit" class="order_btn">주문</button>
+									<button type="button" class="cancel_btn">취소</button>
+									<script>
+								   	$(".cancel_btn").click(function(){
+								   		$(".orderInfo").slideUp();
+								   		$(".primary-btn.chechout-btn").slideDown();
+								   	});
+								   </script>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-      
-        <!-- Cart Page Section End -->
+	</div>
+
+	<!-- Cart Page Section End -->
  
    <!-- Start Footer -->
  	<footer class="bg-secondary pt-4" style="bottom: 0; width: 100%">
@@ -371,33 +370,84 @@
      <!-- 초기화면 상품 전체선택이지만 하나라도 체크박스 해제할 경우 이벤트  -->
      <!-- 페이지 들어오자마자 체크박스  체크 -->
         <script>
-            var tt = "${cart}";
-            if (tt == 'false') {
-                $("#allCheck").prop("checked", false);
-            } else {
-                $("#allCheck").prop("checked", true);
-                $(".chkbox").prop("checked", true);
-                itemSum();
-            }
- 
-        </script>
+									var tt = "${cart}";
+									if (tt == 'false') {
+										$("#allCheck").prop("checked", false);
+									} else {
+										$("#allCheck").prop("checked", true);
+										$(".chkbox").prop("checked", true);
+										itemSum();
+									}
+								</script>
         
         
     <!-- 체크박스에 체크한 상품을 가지고 주문 폼 페이지로 이동 -->
     <script>
-    function goOrder(){
-    	var chk = $('input[name="opnum"]');
-    	if(chk.length == 0){
-    		alert('장바구니에 담긴 상품이 없습니다');
-    		return;
-    	}
-    	
-    	
-    
-    }
-    
+					function goOrder() {
+						var chk = $('input[name="opnum"]');
+						if (chk.length == 0) {
+							alert('장바구니에 담긴 상품이 없습니다');
+							return;
+						}
+
+					}
     </script>
-   
+    
+   	<script>
+	$(function () {
+	    $("#startDate").datepicker({
+	        dateFormat:"yy-mm-dd",
+	        dayNamesMin:["일","월","화","수","목","금","토"],
+	        monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"]        
+	     /*    onSelect:function(d){
+	            
+	            var arr=d.split("-");
+	            var year=arr[0];
+	            var month=arr[1];
+	            var day=arr[2];
+	            
+	            $("#year").text(year);
+	            $("#month").text(month);
+	            $("#day").text(day);
+	            
+	            console.log(year + "-" + month + "-" + day);
+	            
+	            var startDate = $(".startDate").datepicker("getDate");
+	            
+	            console.log(startDate);
+
+	        } */
+	    });	  
+	});
+	
+	$(function () {
+	    $("#endDate").datepicker({
+	        dateFormat:"yy-mm-dd",
+	        dayNamesMin:["일","월","화","수","목","금","토"],
+	        monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"]      
+	       /*  onSelect:function(d){
+	            
+	            var arr=d.split("-");
+	            var year=arr[0];
+	            var month=arr[1];
+	            var day=arr[2];
+	            
+	            $("#year").text(year);
+	            $("#month").text(month);
+	            $("#day").text(day);
+	            
+	            console.log(year + "-" + month + "-" + day);
+	            
+	            var startDate = $(".startDate").datepicker("getDate");
+	            
+	            console.log(startDate);
+	
+	        } */
+	    });
+	    
+	});
+	
+</script>
     <!-- Templatemo -->
     <script src="/resources/js/templatemo.js"></script>
     <!-- Custom -->
