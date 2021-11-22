@@ -206,8 +206,9 @@
  	$(".btn.btn-secondary.text-white").click(function() {
  		var pdNum = ${view.pdNum};
  		var cartStock = $(".numBox").val();
- 		var startDate = $(".datepicker[name=startDate]").val();
- 		var endDate = $(".datepicker[name=endDate]").val();
+ 		var startDate =  $.datepicker.formatDate("yy-mm-dd",$("#startDate").datepicker("getDate"));
+ 		
+ 		var endDate = $.datepicker.formatDate("yy-mm-dd",$("#endDate").datepicker("getDate"));
  		
  		console.log("pdNum = " + pdNum);
  		console.log("cartStock = " + cartStock);
@@ -245,9 +246,8 @@
 	    $("#startDate").datepicker({
 	        dateFormat:"yy-mm-dd",
 	        dayNamesMin:["일","월","화","수","목","금","토"],
-	        monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
-	        
-	        onSelect:function(d){
+	        monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"]        
+	     /*    onSelect:function(d){
 	            
 	            var arr=d.split("-");
 	            var year=arr[0];
@@ -264,7 +264,7 @@
 	            
 	            console.log(startDate);
 
-	        }
+	        } */
 	    });	  
 	});
 	
@@ -272,9 +272,8 @@
 	    $("#endDate").datepicker({
 	        dateFormat:"yy-mm-dd",
 	        dayNamesMin:["일","월","화","수","목","금","토"],
-	        monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
-	        
-	        onSelect:function(d){
+	        monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"]      
+	       /*  onSelect:function(d){
 	            
 	            var arr=d.split("-");
 	            var year=arr[0];
@@ -291,7 +290,7 @@
 	            
 	            console.log(startDate);
 	
-	        }
+	        } */
 	    });
 	    
 	});

@@ -113,6 +113,8 @@ public class ShopController {
 		 }  
 		 return result;  
 		}
+	
+	
 	//주문
 	@RequestMapping(value = "/cart", method = RequestMethod.POST)
 	public String order(HttpSession session, OrderVO order, OrderDetailVO orderDetail,Model model) throws Exception {

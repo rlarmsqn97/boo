@@ -67,14 +67,14 @@
 							  if(confirm_val) {
 							   var checkArr = new Array();
 							   
-							   $("input[class='chBox']:checked").each(function(){
+							   $("input[class='chkBox']:checked").each(function(){
 							    checkArr.push($(this).attr("data-cartNum"));
 							   });
 							    
 							   $.ajax({
 							    url : "/shop/deleteCart",
 							    type : "post",
-							    data : { chbox : checkArr },
+							    data : { chkbox : checkArr },
 							    success : function(result){
 							     if(result == 1) {
 							     location.href = "/shop/cart";
@@ -114,6 +114,8 @@
                                 </script>
                                 <th class="product-h">상품이미지</th>
                                 <th>상품명</th>
+                                <th>대여일</th>
+                                <th>반납일</th>
                                 <th>가격</th>
                                 <th>수량</th>
                                 <th>합계</th>
@@ -132,6 +134,17 @@
                                     <td>
                                     	<a href="/shop/productdetail?n=${cartList.pdNum}">${cartList.pdName}</a>
                                     </td>
+                                    
+                                    <td>
+                                    	<h5>${cartList.startDate }</h5>
+                                    </td>
+                                    
+                                    <td>
+                                    	<h5>${cartList.endDate }</h5>
+                                    </td>
+                                    
+                                    
+                                    
                                     <td class="price-col">
                                         <fmt:formatNumber pattern="###,###,###" value="${cartList.pdPrice}" />
                                         원
