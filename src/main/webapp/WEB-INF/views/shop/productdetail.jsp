@@ -7,7 +7,10 @@
     <title>대여상품상세페이지</title>
       <%@ include file="../include/mainmenu.jsp" %>
    	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
-  
+  	
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
 
@@ -48,11 +51,11 @@
 		              			 <button type="button" class="minus">-</button>
 		              	</label><br>
 		              	    
-		              	
-		               <label class="form-label">대여일</label>
-		               <span>
-		               <input type="datetime-local" name="firstdate" class="datetime">&nbsp;~<label class="form-label">반납일</label> 
-		                   <input type="datetime-local" name="lastdate" class="datetime">
+		              <span>
+			               <label class="form-label">대여일</label>       
+			               <input type="text" id="startDate" class="datetime"> &nbsp;~ 
+			               <label class="form-label">반납일</label>
+			               <input type="datetime-local" name="endDate" class="datetime">
 		              </span>
                  </div>
                	<div  class="container-lg py-5">
@@ -203,13 +206,19 @@
  	$(".btn.btn-secondary.text-white").click(function() {
  		var pdNum = ${view.pdNum};
  		var cartStock = $(".numBox").val();
+ 		var startDate = $(".startDate").val();
+ 		var endDate = $(".endDate");
  		
  		console.log("pdNum = " + pdNum);
  		console.log("cartStock = " + cartStock);
+ 		console.log("startDate = " + startDate);
+ 		console.log("endDate = " + endDate);
  		
  		var data = {
  				pdNum : pdNum,
- 				cartStock : cartStock
+ 				cartStock : cartStock,
+ 				startDate : startDate,
+ 				endDate : endDate
  		};
  		$.ajax({
  			url : "/shop/productdetail/addCart",
@@ -231,6 +240,35 @@
  	});
  </script>
 
+<script>
+	$(function () {
+	    $("#startDate").datepicker({
+	        dateFormat:"yy-mm-dd",
+	        dayNamesMin:["일","월","화","수","목","금","토"],
+	        monthNames:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+	        
+	        onSelect:function(d){
+	            
+	            var arr=d.split("-");
+	            var year=arr[0];
+	            var month=arr[1];
+	            var day=arr[2];
+	            
+	            $("#year").text(year);
+	            $("#month").text(month);
+	            $("#day").text(day);
+	            
+	            console.log(year + "-" + month + "-" + day);
+	            
+	            var startDate = $(".startDate").datepicker("getDate");
+	            
+	            console.log(startDate);
+
+	        }
+	    });
+	    
+	});
+</script>
 
 </body>
 

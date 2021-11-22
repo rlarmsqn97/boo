@@ -108,8 +108,12 @@
 	<!-- 회원목록 -->
 	<select id="userList" resultType="com.boo.dto.UserVO">
 		select 
-			userName, userPhon, userMail, regiDate, userId
-		from user
+			u.userName, u.userPhon, u.userMail, u.regiDate, u.userId,
+			o.userId, sum(o.amount)
+		from user u inner join boo_order o
+			on u.userId = o.userId
+				group by u.userId, u.userName, u.userPhon, u.userMail, u.regiDate
+
 	</select>
 	
 	

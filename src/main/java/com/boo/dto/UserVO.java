@@ -8,6 +8,15 @@ public class UserVO {
 	private String userMail;
 	private String regiDate;
 	private int verify;
+	private int amount;
+	
+	
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
 	public String getUserId() {
 		return userId;
 	}

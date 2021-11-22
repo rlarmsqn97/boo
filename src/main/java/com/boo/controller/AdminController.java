@@ -42,6 +42,7 @@ public class AdminController {
 		List<OrderListVO> orderView = service.orderView(order);
 		
 		model.addAttribute("orderView",orderView);
+		System.out.println(order.getOrderName());
 	}
 	
 	// 주문 상세 목록 - 상태 변경
@@ -65,11 +66,12 @@ public class AdminController {
 	
 	// 회원목록
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
-	public void getUserList(Model model) throws Exception {
-		List<UserVO> userList = service.userList();
+	public void getUserList(Model model,UserVO user) throws Exception {
+		List<UserVO> userList = service.userList(user);
 		model.addAttribute("userList",userList);
-		System.out.println(userList);
+		System.out.println(user.getAmount());
+		System.out.println(user.getUserName());
+		System.out.println(user.getUserId());
 	}
 
-	
 }

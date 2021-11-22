@@ -66,8 +66,8 @@ public class AdminService {
 	}
 	
 	// 회원 목록
-	public List<UserVO> userList() throws Exception {
-		return dao.userList();
+	public List<UserVO> userList(UserVO user) throws Exception {
+		return dao.userList(user);
 	}
 
 }
