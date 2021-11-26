@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원목록</title>
+    <title>회원상세</title>
     <script src="/resources/js/jquery.min.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/admin_userlist.css">
     <link rel="stylesheet" href="/resources/css/admin/adminnav.css">
@@ -32,29 +32,62 @@
         <table class="user-table">
             <thead>
             <tr>
-                <th><input type="checkbox" class="checkbox-selectall"></th>
                 <th>이름</th>
                 <th>전화번호</th>
                 <th>Email</th>
                 <th>가입 날짜</th>
-                <th>삭제</th>
+         		<th>총 구매금액</th>
             </tr>
             </thead>
             
-            <c:forEach items="${userList }" var="userList"> 
+            <c:forEach items="${userDetail }" var="userDetail"> 
             <tbody>            
             <tr>
-                <td><input type="checkbox" class="checkbox-select"></td>
-                <td style = "cursor:pointer;" onMouseOver = " window.status = 'http://ihouse.so.vc'" onMouseOut = "window.status = ''"
-                    onClick="location.href='/admin/userDetail?n=${userList.userId}'">${userList.userName}</td>
-                <td >${userList.userPhon}</td>
-                <td >${userList.userMail}</td>
-                <td >${userList.regiDate }</td>
-                <td><input type="button" value="삭제" class="deletebtn table-btn" th:onclick="|deleteUser('${userList.userId}')|"></td>              
+                <td>${userDetail.userName}</td>
+                <td >${userDetail.userPhon}</td>
+                <td >${userDetail.userMail}</td>
+                <td >${userDetail.regiDate }</td>
+                <td>${userDetail.amount}</td>        
             </tr>  
             </tbody>
             </c:forEach>         
         </table>
+        <div style="height: 100px">
+
+        </div>
+        <span>주문내역</span>
+        <table class="user-table">
+            <thead>
+            <tr>
+                <th scope="rowgroup">상품이미지</th>
+                <th scope="rowgroup">상품명</th>
+                <th scope="rowgroup">대여일</th>
+                <th scope="rowgroup">반납일</th>            
+                <th scope="rowgroup">개당가격</th>
+                <th scope="rowgroup">구입수량</th>
+                <th scope="rowgroup">최총가격</th>
+                <th scope="rowgroup">상태</th>
+                
+            </tr>
+            </thead>
+            
+            <c:forEach items="${userDetail }" var="userDetail"> 
+            <tbody>            
+            <tr>
+                <td scope="row"><img src="${userDetail.pdThumbImg}"/></td>
+                <td scope="row">${userDetail.pdName}</td>
+                <td scope="row">${userDetail.startDate}</td>
+                <td scope="row">${userDetail.endDate}</td>
+                <td scope="row">${userDetail.pdPrice}</td>
+                <td scope="row">${userDetail.cartStock}</td>
+                <td scope="row">${userDetail.pdPrice * userDetail.cartStock}</td>
+                <td scope="row">${userDetail.delivery}</td>           
+            </tr>  
+            </tbody>
+            </c:forEach>         
+        </table>
+        
+        
 
         <div class="bottombtn-box">
             <input type="button" value="전체선택" class="selectallbtn bottombtn" th:onclick="|checkall()|">

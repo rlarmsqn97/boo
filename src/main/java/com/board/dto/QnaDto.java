@@ -7,7 +7,7 @@ public class QnaDto {
 	private int bno;
 	private String title;
 	private String content;
-	private String writer;
+	private String userName;
 	private Date regDate;
 	private int viewCnt;
 	public int getBno() {
@@ -28,11 +28,12 @@ public class QnaDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getWriter() {
-		return writer;
+	
+	public String getUserName() {
+		return userName;
 	}
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public Date getRegDate() {
 		return regDate;

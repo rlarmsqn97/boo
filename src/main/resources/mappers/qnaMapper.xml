@@ -6,14 +6,14 @@
 	<!-- qna 작성 -->
 	<insert id="write" parameterType="com.board.dto.QnaDto">
 		insert into
-			qna_board(title, content, writer)
-				values(#{title}, #{content}, #{writer})
+			qna_board(title, content, userName)
+				values(#{title}, #{content}, #{userName})
 	</insert>
 	
 	<!-- qna 조회 -->
 	<select id="view" parameterType="int" resultType="com.board.dto.QnaDto">
 		select
-			bno, title, content, writer, regDate, viewCnt
+			bno, title, content, userName, regDate, viewCnt
 		from
 			qna_board
 		where
@@ -26,7 +26,7 @@
 			set
 				title = #{title},
 				content = #{content},
-				writer = #{writer}
+				userName = #{userName}
 			where bno = #{bno}
 	</update>
 	
@@ -40,7 +40,7 @@
 	<!-- qna 목록 + 페이징 + 검색 -->
 	<select id="listPage" parameterType="hashMap" resultType="com.board.dto.QnaDto">
 		select
-			bno, title, writer, regDate, viewCnt
+			bno, title, userName, regDate, viewCnt
 		from qna_board
 		
 		<if test='searchType.equals("title")'>

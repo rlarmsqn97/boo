@@ -3,6 +3,7 @@ package com.board.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.board.dto.QnaDto;
 import com.board.dto.QnaPageDto;
 import com.board.service.QnaService;
+import com.boo.dto.UserVO;
 
 @Controller
 @RequestMapping("board/qna/*")
@@ -24,7 +26,7 @@ public class QnaController {
 	// Qna 작성
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public void getWrite() throws Exception {
-
+	
 
 	}
 
@@ -66,7 +68,7 @@ public class QnaController {
 	public String getDelete(@RequestParam("bno") int bno) throws Exception {
 		service.delete(bno);
 		
-		return "redirect:/board/qna/listPageSearch";
+		return "redirect:/board/qna/listPageSearch?num=1";
 	}
 	
 	// Qna 목록 + 페이징 추가 + 검색

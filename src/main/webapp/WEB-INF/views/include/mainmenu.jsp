@@ -47,7 +47,7 @@
                             <a class="nav-link btn-outline-primary rounded-pill px-3" href="/board/qna/listPageSearch?num=1">문의하기</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="/user/review">이용후기</a>
+                            <a class="nav-link btn-outline-primary rounded-pill px-3" href="/board/review/listPageSearch?num=1">이용후기</a>
                         </li>                
                     </ul>
                 </div>

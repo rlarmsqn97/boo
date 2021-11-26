@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>QnA 수정</title>
+<title>QnA 작성</title>
     <%@ include file="../../include/mainmenu.jsp" %>
 </head>
 <body>
@@ -17,16 +17,16 @@
 						<form method="post">
 
 						<label>제목</label>
-						<input type="text" name="title" value="${view.title}"/><br />
+						<input type="text" name="title" /><br />
 						
 						<label>작성자</label>
-						<input type="text" name="writer" value="${view.userName }"/><br />
+						<input type="text" name="userName" value="${user.userName }" /><br />
 						
 						<label>내용</label>
-						<textarea cols="50" rows="5" name="content" value="${view.content }"></textarea><br />
+						<textarea cols="50" rows="5" name="content"></textarea><br />
 						
 						<button class="btn btn-lg btn-primary btn-block text-uppercase"
-								type="submit">완료</button>	
+								type="submit">작성</button>	
 						</form>
 						</div>
 					</div>

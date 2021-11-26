@@ -20,7 +20,7 @@
 						<input type="text" name="title" /><br />
 						
 						<label>작성자</label>
-						<input type="text" name="writer" /><br />
+						<input type="text" name="userName" value="${user.userName }" /><br />
 						
 						<label>내용</label>
 						<textarea cols="50" rows="5" name="content"></textarea><br />

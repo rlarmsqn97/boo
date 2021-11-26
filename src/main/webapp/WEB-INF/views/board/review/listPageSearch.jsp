@@ -8,14 +8,15 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>QnA 목록</title>
+<title>이용후기 목록</title>
     <%@ include file="../../include/mainmenu.jsp" %>
 </head>
 <body>
 	  <div class="container-lg py-5">
         <div class="col-md-12 m-auto text-center py-5">
-            <h1 class="pricing-header h2 semi-bold-600">문의하기</h1>
+            <h1 class="pricing-header h2 semi-bold-600">이용후기</h1>
         </div>
+        
 
 
         <div class="row px-lg-3">

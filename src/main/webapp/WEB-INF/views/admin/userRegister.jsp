@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <title>admin userlist</title>
+    <title>회원등록</title>
     <script src="https://kit.fontawesome.com/e6f78261b2.js" crossorigin="anonymous"></script>
     <script src="/resources/js/jquery.min.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/admin_userlist.css">
@@ -27,6 +27,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
 	
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -39,25 +40,25 @@
 				<div class="card card-signin my-5">
 					<div class="card-body">
 						<h5 class="card-title text-center">회원등록</h5>
-						<form class="form-signin" method="post" action="login">
+						<form class="form-signin" method="post">
 						
 							<div class="form-label-group">
-								<input type="text" id="id" name="id" class="form-control"
+								<input type="text" id="userName" name="userName" class="form-control"
 									placeholder="이름" required autofocus>
 							</div>
 							<br>
 							<div class="form-label-group">
-								<input type="password" id="pwd" name="pwd" class="form-control"
+								<input type="password" id="userPhon" name="userPhon" class="form-control"
 									placeholder="전화번호" required>
 							</div>
 							<br>
 								<div class="form-label-group">
-								<input type="text" id="phone" name="phone" class="form-control"
+								<input type="text" id="userId" name="userId" class="form-control"
 									placeholder="임시아이디" required>
 							</div>
 							<br>
 								<div class="form-label-group">
-								<input type="text" id="phone" name="phone" class="form-control"
+								<input type="text" id="userPw" name="userPw" class="form-control"
 									placeholder="임시비밀번호" required>
 							</div>
 							<hr>
@@ -67,12 +68,8 @@
 								</c:if>
 							</div>
 							<button class="btn btn-lg btn-primary btn-block text-uppercase"
-								type="submit">Join</button>					
+								type="submit">회원등록</button>					
 						</form>
-						
-							<div >
-	
-							</div>
 					</div>
 				</div>
 			</div>

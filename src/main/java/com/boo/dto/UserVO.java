@@ -10,7 +10,59 @@ public class UserVO {
 	private int verify;
 	private int amount;
 	
+	private String pdThumbImg;
+	private String pdName;
+	private String startDate;
+	private String endDate;
+	private String pdPrice;
+	private String cartStock;
+	private String delivery;
 	
+	
+	
+	
+	public String getPdThumbImg() {
+		return pdThumbImg;
+	}
+	public void setPdThumbImg(String pdThumbImg) {
+		this.pdThumbImg = pdThumbImg;
+	}
+	public String getPdName() {
+		return pdName;
+	}
+	public void setPdName(String pdName) {
+		this.pdName = pdName;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	public String getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+	public String getPdPrice() {
+		return pdPrice;
+	}
+	public void setPdPrice(String pdPrice) {
+		this.pdPrice = pdPrice;
+	}
+	public String getCartStock() {
+		return cartStock;
+	}
+	public void setCartStock(String cartStock) {
+		this.cartStock = cartStock;
+	}
+	public String getDelivery() {
+		return delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
+	}
 	public int getAmount() {
 		return amount;
 	}

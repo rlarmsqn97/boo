@@ -69,5 +69,15 @@ public class AdminService {
 	public List<UserVO> userList(UserVO user) throws Exception {
 		return dao.userList(user);
 	}
+	
+	// 회원 상세
+	public List<UserVO> userDetail(UserVO user) throws Exception {
+		return dao.userDetail(user);
+	}
+	
+	// 회원 등록
+	public void join(UserVO user) throws Exception {
+		dao.join(user);
+	}
 
 }

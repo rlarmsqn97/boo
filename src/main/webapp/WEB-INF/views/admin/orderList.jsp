@@ -14,11 +14,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/resources/css/admin/adminnav.css">
     <link rel="stylesheet" href="/resources/css/admin/admin_order.css">
-    
-    <style>
- div#container_box ul li { border:5px solid #eee; padding:10px 20px; margin-bottom:20px; }
- div#container_box .orderList span { font-size:20px; font-weight:bold; display:inline-block; width:90px; margin-right:10px; }
-    </style>
 
 </head>
 <body>
@@ -48,36 +43,40 @@
                 <input type="submit" class="search-submit" value="검색">
             </div>
         </form>
-        
-		<div id="container_box">
-			<ul class="orderList">
-				<c:forEach items="${orderList}" var="orderList">
-					<li>
-						<div>
-							<p>
-								<span>주문번호</span><a
-									href="/admin/orderView?n=${orderList.orderId}">${orderList.orderId}</a>
-							</p>
-							<p>
-								<span>예약자</span>${orderList.userId}</p>
-							<p>
-								<span>렌터카회사명</span>${orderList.rentCar}</p>
-							<p>
-								<span>주문자 번호</span>${orderList.orderPhon}</p>
-							<p>
-								<span>가격</span>
-								<fmt:formatNumber pattern="###,###,###"
-									value="${orderList.amount}" />
-								원
-							</p>
-							<p>
-								<span>상태</span>${orderList.delivery}</p>
-							
-						</div>
-					</li>
-				</c:forEach>
-			</ul>
+       
+		<div style="width: 1291px; height:153.98px">
+			<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">주문번호</th>
+			      <th scope="col">예약자</th>
+			      <th scope="col">렌터카회사명</th>
+			      <th scope="col">번호</th>
+			      <th scope="col">대여일</th>
+			      <th scope="col">반납일</th>
+			      <th scope="col">결제금액</th>
+			      <th scope="col">상태</th>
+			    </tr>
+			  </thead>
+			  <c:forEach items="${orderList}" var="orderList">
+			  <tbody>
+			    <tr>
+			      <td style = "cursor:pointer;" onMouseOver = " window.status = 'http://ihouse.so.vc' " onMouseOut = " window.status = '' "
+					 onClick="location.href='/admin/orderView?n=${orderList.orderId}'">${orderList.orderId}</td>
+			      <td>${orderList.orderName}</td>
+			      <td>${orderList.rentCar}</td>
+			      <td>${orderList.orderPhon}</td>			  
+			      <td>${orderList.startDate}</td>
+			      <td>${orderList.endDate}</td>
+			          <td><fmt:formatNumber pattern="###,###,###"
+									value="${orderList.amount}" /></td>
+			      <td>${orderList.delivery}</td>
+			    </tr>			
+			  </tbody>
+			  </c:forEach>
+			</table>
 		</div>
+
     </section>
     <script src="/resources/js/admin/admin_nav.js"></script>
     <script src="/resources/js/admin/admin_order.js"></script>

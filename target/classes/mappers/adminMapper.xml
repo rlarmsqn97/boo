@@ -65,14 +65,15 @@
 	<!-- 주문 목록 -->
 	<select id="orderList" resultType="com.boo.dto.OrderVO">
 		select
-			orderId, userId, rentCar, amount, orderDate, orderPhon, delivery
+			orderId, userId, rentCar, amount, orderDate, orderPhon, delivery, startDate, endDate, orderName
 		from boo_order
+		    order by orderId desc
 	</select>
 	
 	<!-- 특정 주문 목록 -->
 	<select id="orderView" resultType="com.boo.dto.OrderListVO">
 		select
-			o.orderId, o.userId, o.rentCar, o.orderPhon, o.orderName, o.amount, o.orderDate, o.reQu, o.delivery,
+			o.orderId, o.userId, o.rentCar, o.orderPhon, o.orderName, o.amount, o.orderDate, o.reQu, o.delivery, o.startDate, o.endDate,
 			d.orderDetailsNum, d.pdNum, d.cartStock,
 			g.pdName, g.pdThumbImg, g.pdPrice
 		from boo_order o
@@ -105,16 +106,35 @@
 			where orderId = #{orderId}
 	</select>
 	
-	<!-- 회원목록 -->
+	<!-- 회원 목록 -->
 	<select id="userList" resultType="com.boo.dto.UserVO">
+		select
+			userName, userPhon, userMail, regiDate, userId
+		from user
+	</select>
+	
+	<!-- 회원상세 -->
+	<select id="userDetail" resultType="com.boo.dto.UserVO">
 		select 
 			u.userName, u.userPhon, u.userMail, u.regiDate, u.userId,
-			o.userId, sum(o.amount)
-		from user u inner join boo_order o
-			on u.userId = o.userId
-				group by u.userId, u.userName, u.userPhon, u.userMail, u.regiDate
-
+			o.userId, sum(o.amount), o.orderDate, o.reQu, o.delivery, o.startDate, o.endDate, o.orderId,
+			d.cartStock, d.orderId, d.pdNum,
+			p.pdThumbImg, p.pdName, p.pdPrice, p.pdNum
+		from boo_order o
+			inner join user u
+				on o.userId = u.userId
+			inner join order_detail d
+				on d.orderId = o.orderId
+			inner join product p
+				on d.pdNum = p.pdNum
+		where u.userId = #{userId}
 	</select>
+	
+	<!-- 회원 등록 -->
+	<insert id="join">
+		 insert into user(userId, userPw, userName, userPhon)
+		  values(#{userId}, #{userPw}, #{userName}, #{userPhon}) 
+	</insert>
 	
 	
 </mapper>

@@ -42,7 +42,7 @@ public class AdminController {
 		List<OrderListVO> orderView = service.orderView(order);
 		
 		model.addAttribute("orderView",orderView);
-		System.out.println(order.getOrderName());
+		System.out.println(order.getOrderId());
 	}
 	
 	// 주문 상세 목록 - 상태 변경
@@ -69,9 +69,30 @@ public class AdminController {
 	public void getUserList(Model model,UserVO user) throws Exception {
 		List<UserVO> userList = service.userList(user);
 		model.addAttribute("userList",userList);
-		System.out.println(user.getAmount());
-		System.out.println(user.getUserName());
-		System.out.println(user.getUserId());
+
+	}
+	
+	// 회원상세
+	@RequestMapping(value = "/userDetail", method = RequestMethod.GET)
+	public void getUserDetail(@RequestParam("n") String userId,Model model,UserVO user) throws Exception {
+		user.setUserId(userId);
+		List<UserVO> userDetail = service.userDetail(user);
+		model.addAttribute("userDetail",userDetail);
+		System.out.println(userId);
+	}
+	
+	// 회원등록
+	@RequestMapping(value = "/userRegister", method = RequestMethod.GET)
+	public void getUserRegister() {
+		
+	}
+	
+	// 회원등록
+	@RequestMapping(value = "/userRegister", method = RequestMethod.POST)
+	public String postUserRegister(UserVO user) throws Exception{
+		service.join(user);
+		
+		return "redircet:/admin/userList";
 	}
 
 }
