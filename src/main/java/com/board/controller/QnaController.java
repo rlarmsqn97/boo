@@ -3,7 +3,6 @@ package com.board.controller;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.dto.QnaDto;
 import com.board.dto.QnaPageDto;
+import com.board.dto.QnaReplyDto;
+import com.board.service.QnaReplyService;
 import com.board.service.QnaService;
-import com.boo.dto.UserVO;
 
 @Controller
 @RequestMapping("board/qna/*")
@@ -22,6 +22,9 @@ public class QnaController {
 	
 	@Inject
 	QnaService service;
+	
+	@Inject
+	private QnaReplyService replyService;
 	
 	// Qna 작성
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
@@ -44,6 +47,11 @@ public class QnaController {
 	public void getView(@RequestParam("bno") int bno, Model model) throws Exception {
 		QnaDto dto = service.view(bno);
 		model.addAttribute("view",dto);
+		
+		// 댓글 조회
+		List<QnaReplyDto> reply = null;
+		reply = replyService.list(bno);
+		model.addAttribute("reply",reply);
 	}
 	
 	// Qna 수정

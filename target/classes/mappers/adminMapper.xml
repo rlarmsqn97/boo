@@ -113,11 +113,11 @@
 		from user
 	</select>
 	
-	<!-- 회원상세 -->
+	<!-- 회원상세 주문한 회원-->
 	<select id="userDetail" resultType="com.boo.dto.UserVO">
 		select 
 			u.userName, u.userPhon, u.userMail, u.regiDate, u.userId,
-			o.userId, sum(o.amount), o.orderDate, o.reQu, o.delivery, o.startDate, o.endDate, o.orderId,
+			o.userId, o.amount, o.orderDate, o.reQu, o.delivery, o.startDate, o.endDate,
 			d.cartStock, d.orderId, d.pdNum,
 			p.pdThumbImg, p.pdName, p.pdPrice, p.pdNum
 		from boo_order o
@@ -129,6 +129,7 @@
 				on d.pdNum = p.pdNum
 		where u.userId = #{userId}
 	</select>
+	
 	
 	<!-- 회원 등록 -->
 	<insert id="join">
