@@ -55,7 +55,7 @@
 		     where pdNum = ${pdNum}
 		</update>
 		
-		<!-- 상품 삭제 -->
+	<!-- 상품 삭제 -->
 	<delete id="pdDelete">
 	 delete from
 	     product
@@ -111,6 +111,14 @@
 		select
 			userName, userPhon, userMail, regiDate, userId
 		from user
+	</select>
+	
+	<!-- 회원상세 -->
+	<select id="userView" resultType="com.boo.dto.UserVO">
+		select
+			userName, userPhon, userMail, regiDate, userId
+		from user
+		where userId = #{userId} 
 	</select>
 	
 	<!-- 회원상세 주문한 회원-->

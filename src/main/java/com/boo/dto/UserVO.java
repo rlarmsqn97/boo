@@ -1,5 +1,7 @@
 package com.boo.dto;
 
+import java.util.Date;
+
 public class UserVO {
 	private String userId;
 	private String userPw;
@@ -17,10 +19,17 @@ public class UserVO {
 	private String pdPrice;
 	private String cartStock;
 	private String delivery;
+	private Date orderDate;
 	
 	
 	
 	
+	public Date getOrderDate() {
+		return orderDate;
+	}
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
 	public String getPdThumbImg() {
 		return pdThumbImg;
 	}

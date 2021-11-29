@@ -58,7 +58,6 @@ public class QnaController {
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void getModify(@RequestParam("bno") int bno, Model model) throws Exception {
 		QnaDto dto = service.view(bno);
-		
 		model.addAttribute("view",dto);
 		
 	}
@@ -103,11 +102,30 @@ public class QnaController {
 		
 		// 현재 페이지
 		model.addAttribute("select", num);
-		
-
+				
+	}
+	
+	
+	// 댓글 수정
+	@RequestMapping(value = "/qnaReplyModify", method = RequestMethod.GET)
+	public void getRModify(@RequestParam("bno") int bno, Model model)throws Exception{
+		// 질문
+		QnaDto dto = service.view(bno);
+		model.addAttribute("view",dto);
+		System.out.println(bno);
+		// 답글
+		List<QnaReplyDto> reply = null;
+		reply = replyService.list(bno);
+		model.addAttribute("reply",reply);
+		 
 		
 	}
-
-
-
+	
+	// 댓글 수정
+	@RequestMapping(value = "/qnaReplyModify", method = RequestMethod.POST)
+	public String postRModify(QnaReplyDto dto, QnaDto qdto) throws Exception {
+		replyService.modify(dto);
+		
+		return "redirect:/board/qna/view?bno=" + qdto.getBno();
+	}
 }

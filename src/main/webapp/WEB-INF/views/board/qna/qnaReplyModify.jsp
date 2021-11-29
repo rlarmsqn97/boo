@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>QnA 조회</title>
+<title>QnA 댓글 수정</title>
     <%@ include file="../../include/mainmenu.jsp" %>
 </head>
 <body>
@@ -19,16 +19,7 @@
 						${view.userName }<br /> <label>내용</label> ${view.content }
 					</div>
 				</div>
-				<c:if test="${user.userName == view.userName }">
-				<div>
-					<button class="btn btn-lg btn-primary btn-block text-uppercase"
-						type="button"
-						onclick="location.href='/board/qna/modify?bno=${view.bno}'">수정</button>
-					<button class="btn btn-lg btn-primary btn-block text-uppercase"
-						type="button"
-						onclick="location.href='/board/qna/delete?bno=${view.bno}'">삭제</button>
-				</div>
-				</c:if>
+				
 	
 	
 		<!-- 답변 -->
@@ -37,35 +28,12 @@
  			<li>
  				<div>
  					<p>${reply.userName } / <fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd" /></p>
- 					<p>${reply.content }</p>
- 				
- 					<button type="submit" type="button"
-						onclick="location.href='/board/qna/qnaReplyModify?bno=${view.bno}'">댓글 수정</button>
- 					
- 					<button type="button" onclick="location.href='/reply/delete?rno=${reply.rno}&bno=${view.bno}'">댓글 삭제</button>
- 				
+ 					<textarea cols="50" rows="5" name="content" value="${reply.content }"></textarea>
  				</div>
  			</li>
  			</c:forEach>
- 			
- 		</ul>
- 		
- 		<c:if test="${user.verify == 7 }">
- 		<div>
-		<form method="post" action="/reply/write">		
-			<p>
-				<label>댓글 작성자</label> <input type="text" name="userName" value="${user.userName }">
-			</p>
-			<p>
-				<textarea rows="5" cols="50" name="content"></textarea>
-			</p>
-			<p>
-				<input type="hidden" name="bno" value="${view.bno}">
-				<button type="submit">댓글 작성</button>
-			</p>
-		</form>	
-		</div>
-		</c:if>
+ 			<button type="submit">완료</button>
+ 		</ul>	
 		<!-- 답변 -->
 			</div>
 		</div>

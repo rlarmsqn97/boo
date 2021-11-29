@@ -36,22 +36,30 @@
                 <th>전화번호</th>
                 <th>Email</th>
                 <th>가입 날짜</th>
-         		<th>총 구매금액</th>
             </tr>
             </thead>
             
-            <c:forEach items="${userDetail }" var="userDetail" > 
+            <c:forEach items="${userView }" var="userView"> 
             <tbody>            
-            <tr>
-                <td>${userDetail.userName}</td>
-                <td >${userDetail.userPhon}</td>
-                <td >${userDetail.userMail}</td>
-                <td >${userDetail.regiDate }</td>
-                <td>${userDetail.amount}</td>        
+            <tr>               
+                <td>${userView.userName}</td>
+                <td>${userView.userPhon}</td>
+                <td>${userView.userMail}</td>
+                <td>${userView.regiDate}</td>                            
             </tr>  
             </tbody>
             </c:forEach>         
+
         </table>
+        <div>
+        	<h4>총 구매금액</h4>
+        	<c:set var = "total" value = "0"/>
+        	<c:forEach items="${userDetail }" var="userDetail" varStatus="status">
+        		<h5 style="display:none">${userDetail.amount}</h5>        	
+        	<c:set var="total" value="${total + userDetail.amount }"/>
+        	</c:forEach>
+        	<c:out value="${total }"/>
+        </div>
         <div style="height: 100px">
 
         </div>
@@ -61,6 +69,7 @@
             <tr>
                 <th scope="rowgroup">상품이미지</th>
                 <th scope="rowgroup">상품명</th>
+                <th scope="rowgroup">주문날짜</th>
                 <th scope="rowgroup">대여일</th>
                 <th scope="rowgroup">반납일</th>            
                 <th scope="rowgroup">개당가격</th>
@@ -76,6 +85,8 @@
             <tr>
                 <td scope="row"><img src="${userDetail.pdThumbImg}"/></td>
                 <td scope="row">${userDetail.pdName}</td>
+                <td scope="row"><fmt:formatDate pattern="yyyy-MM-dd"
+											value="${userDetail.orderDate}"/></td>
                 <td scope="row">${userDetail.startDate}</td>
                 <td scope="row">${userDetail.endDate}</td>
                 <td scope="row">${userDetail.pdPrice}</td>
@@ -85,31 +96,7 @@
             </tr>  
             </tbody>
             </c:forEach>         
-        </table>
-        
-        
-
-        <div class="bottombtn-box">
-            <input type="button" value="전체선택" class="selectallbtn bottombtn" th:onclick="|checkall()|">
-            <input type="button" value="선택삭제" class="bottom-deletebtn bottombtn" th:onclick="|deleteCheckedUsers()|">
-
-        </div>
-        <!-- 여기 수정 -->
-        <div class="paginate">
-            <ul class="pagination justify-content-center">
-                <li >
-                    <a>Previous</a>
-                </li>
-
-                <li>
-                    <a ></a></li>
-
-                <li>
-                    <a>Next</a>
-                </li>
-            </ul>
-        </div>
-        <!-- 여기까지 -->
+        </table>  
     </div>
 </section>
 <script src="/resources/js/admin/admin_nav.js"></script>

@@ -75,11 +75,16 @@ public class AdminController {
 	// 회원상세
 	@RequestMapping(value = "/userDetail", method = RequestMethod.GET)
 	public void getUserDetail(@RequestParam("n") String userId,Model model,UserVO user) throws Exception {
+		
 		user.setUserId(userId);
 		List<UserVO> userDetail = service.userDetail(user);
+		List<UserVO> userView = service.userView(user);
+		
+		model.addAttribute("userView",userView);
 		model.addAttribute("userDetail",userDetail);
 		System.out.println(userId);
 	}
+	// 주문내역이있으면 요거 없으면 요거 해서 뷰로 넘김 주문내역이있는지 없는지 판단할수있는것은
 	
 	// 회원등록
 	@RequestMapping(value = "/userRegister", method = RequestMethod.GET)

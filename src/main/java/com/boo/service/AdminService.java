@@ -70,9 +70,14 @@ public class AdminService {
 		return dao.userList(user);
 	}
 	
-	// 회원 상세
+	// 회원 주문 상세
 	public List<UserVO> userDetail(UserVO user) throws Exception {
 		return dao.userDetail(user);
+	}
+	
+	// 회원 상세
+	public List<UserVO> userView(UserVO user) throws Exception {
+		return dao.userView(user);
 	}
 	
 	// 회원 등록

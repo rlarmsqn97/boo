@@ -27,7 +27,7 @@ public class QnaReplyService {
 		dao.modify(dto);
 	}
 	
-	public void delete(QnaReplyDto dto) throws Exception {
-		dao.delete(dto);
+	public void delete(int rno) throws Exception {
+		dao.delete(rno);
 	}
 }

@@ -70,9 +70,14 @@ public class AdminDAO {
 		return sql.selectList(namespace + ".userList", user);
 	}
 	
-	// 회원 상세
+	// 회원 주문 상세
 	public List<UserVO> userDetail(UserVO user) throws Exception {
 		return sql.selectList(namespace + ".userDetail", user);
+	}
+	
+	// 회원 상세
+	public List<UserVO> userView (UserVO user) throws Exception {
+		return sql.selectList(namespace + ".userView", user);
 	}
 	
 	// 회원 등록

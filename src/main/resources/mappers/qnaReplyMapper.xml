@@ -20,16 +20,13 @@
 	<!-- 댓글 수정 -->
 	<update id="qnaReplyModify" parameterType="com.board.dto.QnaReplyDto">
 		update qna_reply set
-			userName = #{userName},
 			content = #{content}
 		where rno = #{rno}
-			and bno = #{bno}
 	</update>
 	
 	<!-- 댓글 삭제 -->
-	<delete id="QnaReplyDelete" parameterType="com.board.dto.QnaReplyDto">
+	<delete id="qnaReplyDelete" parameterType="int">
 		delete from qna_reply
 		where rno = #{rno}
-			and bno = #{bno}
 	</delete>
 </mapper>

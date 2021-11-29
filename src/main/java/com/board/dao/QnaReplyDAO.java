@@ -33,8 +33,8 @@ public class QnaReplyDAO {
 	}
 	
 	// 댓글 삭제
-	public void delete(QnaReplyDto dto) throws Exception {
-		sql.delete(namespace + ".qnaReplyDelete", dto);
+	public void delete(int rno) throws Exception {
+		sql.delete(namespace + ".qnaReplyDelete", rno);
 	}
 
 }
