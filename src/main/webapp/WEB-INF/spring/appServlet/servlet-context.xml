@@ -36,8 +36,8 @@
 		
 		<resources location="/resources/ckUpload/" mapping="/ckUpload/**"/>
 <beans:bean class="java.lang.String" id="uploadPath">
-<!-- <beans:constructor-arg value="C:\Users\W\Desktop\work\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\boo\resources" /> -->
- <beans:constructor-arg value="C:\Users\401ST000\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\boo\resources" />
+<beans:constructor-arg value="C:\Users\W\Desktop\work\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\boo\resources" /> 
+ <!-- <beans:constructor-arg value="C:\Users\401ST000\eclipse-workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\boo\resources" /> -->
 </beans:bean>
 
 <!-- 일반 파일 업로드 경로 -->

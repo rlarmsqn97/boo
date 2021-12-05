@@ -21,11 +21,7 @@ public class QnaReplyController {
 	
 	@Inject
 	QnaReplyService service;
-	
-	@Inject
-	private QnaService qservice;
-	
-	
+		
 	// 댓글 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String postWrite(QnaReplyDto dto) throws Exception {

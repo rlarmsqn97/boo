@@ -5,6 +5,7 @@
 <html>
 <meta charset="utf-8">
 <head>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <%@ include file="../include/mainmenu.jsp" %>
 </head>
 

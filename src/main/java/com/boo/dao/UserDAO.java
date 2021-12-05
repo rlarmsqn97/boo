@@ -23,5 +23,14 @@ public class UserDAO{
 	public UserVO login(UserVO vo) throws Exception {
 		return sql.selectOne(namespace + ".login", vo);
 	}
+	
+	public void modify(UserVO vo) throws Exception {
+		sql.update(namespace + ".modify", vo);
+	}
+	
+	// 회원탈퇴
+	public void delete(UserVO vo) throws Exception{
+		sql.delete(namespace + ".delete", vo);
+	}
 }
 

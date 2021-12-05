@@ -40,7 +40,7 @@
  					<p>${reply.content }</p>
  				
  					<button type="submit" type="button"
-						onclick="location.href='/board/qna/qnaReplyModify?bno=${view.bno}'">댓글 수정</button>
+						onclick="location.href='/board/qna/qnaReplyModify?bno=${view.bno}&rno=${reply.rno }'">댓글 수정</button>
  					
  					<button type="button" onclick="location.href='/reply/delete?rno=${reply.rno}&bno=${view.bno}'">댓글 삭제</button>
  				

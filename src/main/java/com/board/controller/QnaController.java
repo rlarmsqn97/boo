@@ -123,9 +123,10 @@ public class QnaController {
 	
 	// 댓글 수정
 	@RequestMapping(value = "/qnaReplyModify", method = RequestMethod.POST)
-	public String postRModify(QnaReplyDto dto, QnaDto qdto) throws Exception {
-		replyService.modify(dto);
+	public String postRModify(QnaReplyDto dto) throws Exception {
 		
-		return "redirect:/board/qna/view?bno=" + qdto.getBno();
+		replyService.modify(dto);
+		System.out.println(dto.getRno());
+		return "redirect:/board/qna/view?bno=" + dto.getBno();
 	}
 }

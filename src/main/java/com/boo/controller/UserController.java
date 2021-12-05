@@ -82,6 +82,61 @@ public class UserController {
 	 return "redirect:/";
 	}
 	
+	// 정보수정
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public void getModify() {
+		
+	}
+	
+	// 정보수정
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String postModify(UserVO vo,HttpSession session) throws Exception{
+	
+		service.modify(vo);
+		
+		session.invalidate();
+		
+		return "redirect:/user/login";
+				
+	}
+	
+	// 회원탈퇴
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public void getDelete() {
+		
+	}
+	
+	// 회원탈퇴
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String postDelete(UserVO vo, HttpSession session, RedirectAttributes rttr) throws Exception {
+		logger.info("회원탈퇴!");
+		UserVO user = (UserVO) session.getAttribute("user");
+		String sessionPw = user.getUserPw();
+		String voPw = vo.getUserPw();
+		
+		System.out.println(sessionPw);
+		System.out.println(voPw);
+		System.out.println(vo.getUserId());
+		boolean passMatch = passEncoder.matches(voPw, sessionPw);
+		System.out.println(passMatch);
+		
+		if(passMatch != true) {
+			rttr.addFlashAttribute("msg",false);
+			return "redirect:/user/mypage";
+		}	else {	
+		service.delete(vo);
+		session.invalidate();
+		return "redirect:/";
+		}
+		
+	}
+	
+	// 마이페이지
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public void mypage() throws Exception {
+		
+	}
+	
 	
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public String a() {

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <head>
  	<meta charset="utf-8">
-    <title>장바구니</title>
+    <title>주문내역</title>
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   
@@ -32,7 +32,7 @@
     <div id="work_banner" class="banner-wrapper bg-light w-100 py-5"style="height:500px">
         <div class="banner-vertical-center-work container text-light d-flex justify-content-center align-items-center py-5 p-0">
             <div class="banner-content col-lg-8 col-12 m-lg-auto text-center">
-                <h1 class="banner-heading h2 display-3 pb-5 semi-bold-600 typo-space-line-center">장바구니</h1>
+                <h1 class="banner-heading h2 display-3 pb-5 semi-bold-600 typo-space-line-center">주문내역</h1>
                 <h3 class="h4 pb-2 regular-400">Elit, sed do eiusmod tempor incididunt</h3>
                 <p class="banner-body pb-2 light-300">
                     Vector illustration <a class="text-white" href="http://freepik.com/" target="_blank">Freepik</a>.

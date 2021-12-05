@@ -19,27 +19,27 @@
 						${view.userName }<br /> <label>내용</label> ${view.content }
 					</div>
 				</div>
-				
-	
-	
-		<!-- 답변 -->
- 		<ul>
- 			<c:forEach items="${reply }" var="reply">
- 			<li>
- 				<div>
- 					<p>${reply.userName } / <fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd" /></p>
- 					<textarea cols="50" rows="5" name="content" value="${reply.content }"></textarea>
- 				</div>
- 			</li>
- 			</c:forEach>
- 			<button type="submit">완료</button>
- 		</ul>	
-		<!-- 답변 -->
+
+				<!-- 답변 -->
+				<form method="post">
+					<ul>
+						<li>
+							<div>
+								<c:forEach items="${reply }" var="reply">
+								<p>${reply.userName }</p> / <fmt:formatDate value="${reply.regDate}" pattern="yyyy-MM-dd" />
+								<textarea cols="50" rows="5" name="content">${reply.content }</textarea>
+								<button type="submit">완료</button>
+								</c:forEach>
+							</div>
+						</li>
+					</ul>
+				</form>
+				<!-- 답변 -->
 			</div>
 		</div>
 	</div>
 
-	  <!-- Start Footer -->
+	<!-- Start Footer -->
  	<footer class="bg-secondary pt-4" style="bottom: 0; width: 100%">
         <div class="container">
             <div class="row py-4">

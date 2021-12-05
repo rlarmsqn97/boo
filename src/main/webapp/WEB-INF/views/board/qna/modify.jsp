@@ -23,7 +23,7 @@
 						<input type="text" name="writer" value="${view.userName }"/><br />
 						
 						<label>내용</label>
-						<textarea cols="50" rows="5" name="content" value="${view.content }"></textarea><br />
+						<textarea cols="50" rows="5" name="content">${view.content }</textarea><br />
 						
 						<button class="btn btn-lg btn-primary btn-block text-uppercase"
 								type="submit">완료</button>	

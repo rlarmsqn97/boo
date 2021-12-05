@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/resources/img/favicon.ico">
   
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-   
+     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="/resources/css/boxicon.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -58,7 +58,7 @@
                 </c:if>
                 <c:if test="${user != null }">
                 	<span class="text-dark px-3">${user.userName }님</span>
-                   <a class="nav-link btn-outline-primary rounded-pill px-3" href="/shop/cart">마이페이지</a>
+                   <a class="nav-link btn-outline-primary rounded-pill px-3" href="/user/mypage">마이페이지</a>
                    <a class="nav-link btn-outline-primary rounded-pill px-3" href="/shop/orderList">주문내역</a>
                    <a class="nav-link btn-outline-primary rounded-pill px-3" href="/shop/cart">장바구니</a>               
                    <a class="nav-link btn-outline-primary rounded-pill px-3" href="/user/logout">로그아웃</a> 
