@@ -35,7 +35,7 @@
 								<c:forEach items="${list}" var="list">
 								 <tr>
 								  <td>${list.bno}</td>
-								  <td><a href="/board/qna/view?bno=${list.bno}">${list.title}</a></td>
+								  <td><a href="/board/review/view?bno=${list.bno}">${list.title}</a></td>
 								  <td><fmt:formatDate value="${list.regDate}" pattern="yyyy년-MM월-dd일" /></td>
 								  <td>${list.userName}</td>
 								  <td>${list.viewCnt}</td>
@@ -46,13 +46,13 @@
 						
 						<div>
 							<c:if test="${page.prev }">
-								<span>[ <a href="/board/qna/listPageSearch?num=${page.startPageNum -1}${page.searchTypeKeyword}">이전</a> ]</span>			
+								<span>[ <a href="/board/review/listPageSearch?num=${page.startPageNum -1}${page.searchTypeKeyword}">이전</a> ]</span>			
 							</c:if>
 							
 							<c:forEach begin="${page.startPageNum }" end="${page.endPageNum }" var="num">
 								<span>
 									<c:if test="${select != num }">
-										<a href="/board/qna/listPageSearch?num=${num }${page.searchTypeKeyword}">${num }</a>
+										<a href="/board/review/listPageSearch?num=${num }${page.searchTypeKeyword}">${num }</a>
 									</c:if>
 									
 									<c:if test="${select == num }">
@@ -62,7 +62,7 @@
 							</c:forEach>
 							
 							<c:if test="${page.next }">
-								<span>[ <a href="/board/qna/listPageSearch?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span>
+								<span>[ <a href="/board/review/listPageSearch?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a> ]</span>
 							</c:if>						
 						</div>
 						
@@ -71,15 +71,17 @@
 							     <option value="title" <c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
 							     <option value="content" <c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
 							     <option value="title_content" <c:if test="${page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
-							     <option value="writer" <c:if test="${page.searchType eq 'writer'}">selected</c:if>>작성자</option>
+							     <option value="userName" <c:if test="${page.searchType eq 'userName'}">selected</c:if>>작성자</option>
 							</select>
 							
 							<input type="text" name="keyword" value="${page.keyword}"/>
 							<button type="button" id="searchBtn">검색</button>
 						</div>
-							<button style="width:100px; height:25px;"
-								type="button" onclick="location.href='/board/qna/write'">글쓰기</button>	
+						<c:if test="${user != null }">
+							<button style="width:100px; height:25px;" type="button" onclick="location.href='/board/review/write'">글쓰기</button>
+					    </c:if>	
 						</div>
+						
 					</div>
 
 	
@@ -91,7 +93,7 @@
 				let searchType = document.getElementsByName("searchType")[0].value;
 				let keyword = document.getElementsByName("keyword")[0].value;
 				
-				location.href = "/board/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+				location.href = "/board/review/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
 		
 			};
 		</script>

@@ -36,7 +36,7 @@ public class ReviewService {
 	}
 	
 	// qna 목록 + 페이징 + 검색
-	public List<QnaDto> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception {
+	public List<ReviewDto> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception {
 		return dao.listPageSearch(displayPost,  postNum, searchType, keyword);
 	}
 	

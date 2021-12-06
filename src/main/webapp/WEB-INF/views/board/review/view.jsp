@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>QnA 조회</title>
+<title>이용후기 조회</title>
     <%@ include file="../../include/mainmenu.jsp" %>
 </head>
 <body>
@@ -26,9 +26,9 @@
 					</div>
 					<div>
 					<button class="btn btn-lg btn-primary btn-block text-uppercase"
-								type="button" onclick="location.href='/board/qna/modify?bno=${view.bno}'">수정</button>
+								type="button" onclick="location.href='/board/review/modify?bno=${view.bno}'">수정</button>
 					<button class="btn btn-lg btn-primary btn-block text-uppercase"
-								type="button" onclick="location.href='/board/qna/delete?bno=${view.bno}'">삭제</button>
+								type="button" onclick="location.href='/board/review/delete?bno=${view.bno}'">삭제</button>
 					</div>		
 				</div>
 			</div>

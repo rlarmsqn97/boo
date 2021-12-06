@@ -70,14 +70,15 @@
 							     <option value="title" <c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
 							     <option value="content" <c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
 							     <option value="title_content" <c:if test="${page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
-							     <option value="writer" <c:if test="${page.searchType eq 'writer'}">selected</c:if>>작성자</option>
+							     <option value="userName" <c:if test="${page.searchType eq 'userName'}">selected</c:if>>작성자</option>
 							</select>
 							
 							<input type="text" name="keyword" value="${page.keyword}"/>
 							<button type="button" id="searchBtn">검색</button>
 						</div>
-							<button style="width:100px; height:25px;"
-								type="button" onclick="location.href='/board/qna/write'">글쓰기</button>	
+						<c:if test="${user != null }">
+							<button style="width:100px; height:25px;" type="button" onclick="location.href='/board/qna/write'">글쓰기</button>
+						</c:if>	
 						</div>
 					</div>
 
@@ -90,7 +91,7 @@
 				let searchType = document.getElementsByName("searchType")[0].value;
 				let keyword = document.getElementsByName("keyword")[0].value;
 				
-				location.href = "/board/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
+				location.href = "/board/qna/listPageSearch?num=1" + "&searchType=" + searchType + "&keyword=" + keyword;
 		
 			};
 		</script>

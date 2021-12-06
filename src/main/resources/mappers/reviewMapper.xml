@@ -3,14 +3,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.boo.mappers.reviewMapper">
 	
-	<!-- qna 작성 -->
+	<!-- 이용후기 작성 -->
 	<insert id="write" parameterType="com.board.dto.ReviewDto">
 		insert into
 			review_board(title, content, userName)
 				values(#{title}, #{content}, #{userName})
 	</insert>
 	
-	<!-- qna 조회 -->
+	<!-- 이용후기 조회 -->
 	<select id="view" parameterType="int" resultType="com.board.dto.ReviewDto">
 		select
 			bno, title, content, userName, regDate, viewCnt
@@ -20,24 +20,23 @@
 			bno = #{bno}
 	</select>
 	
-	<!-- qna 수정 -->
+	<!-- 이용후기 수정 -->
 	<update id="modify" parameterType="com.board.dto.ReviewDto">
 		update review_board
 			set
 				title = #{title},
-				content = #{content},
-				userName = #{userName}
+				content = #{content}
 			where bno = #{bno}
 	</update>
 	
-	<!-- qna 삭제 -->
+	<!-- 이용후기 삭제 -->
 	<delete id="delete" parameterType="int">
 		delete 
 			from review_board
 		where bno = #{bno}
 	</delete>
 	
-	<!-- qna 목록 + 페이징 + 검색 -->
+	<!-- 이용후기 목록 + 페이징 + 검색 -->
 	<select id="listPage" parameterType="hashMap" resultType="com.board.dto.ReviewDto">
 		select
 			bno, title, userName, regDate, viewCnt
@@ -56,15 +55,15 @@
 		   or content LIKE concat('%', #{keyword}, '%')
 		 </if>
 		 
-		 <if test='searchType.equals("writer")'>
-		  WHERE writer LIKE concat('%', #{keyword}, '%')
+		 <if test='searchType.equals("userName")'>
+		  WHERE userName LIKE concat('%', #{keyword}, '%')
 		 </if>
  
 		order by bno desc
 			limit #{displayPost}, #{postNum}
 	</select>
 	
-	<!-- qna 총 갯수 + 검색 적용 -->
+	<!-- 이용후기 총 갯수 + 검색 적용 -->
 	<select id="searchCount" resultType="int">
 		select count(bno) from review_board
 	</select>

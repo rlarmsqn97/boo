@@ -41,27 +41,32 @@
     	 <div class="row pt-5">
             <div class="worksingle-content col-lg-8 m-auto text-left justify-content-center">
                <img class="img-fluid border rounded" src="${view.pdThumbImg }" alt="Card image cap">
+               	  <form action="/shop/buy" method="get">
                   <div style="margin-left:210px;">
 		               <label class="form-label">상품명 : ${view.pdName }</label><br>
 		              	<label class="form-label">사용연령 : ${view.pdAge }</label><br>
 		              	<label class="form-label">가격 : </label><fmt:formatNumber pattern="###,###,###" value="${view.pdPrice }"></fmt:formatNumber><br>
 		              	<label class="form-label">
+		              	
+		              	<input type="hidden" name="pdnum" id="pdnum" value="${view.pdNum }">
 		              	구입 수량 : <button type="button" class="plus">+</button>  
-		              			 <input type="number" class="numBox" min="1" max="${view.pdStock }" value="1" readonly="readonly"/>
+		              			 <input type="number" class="numBox" id="cartStock" name="cartStock" min="1" max="${view.pdStock }" value="1" readonly="readonly"/>
 		              			 <button type="button" class="minus">-</button>
 		              	</label><br>
 		              	    
 		              <span>
 			               <label class="form-label">대여일</label>       
-			               <input type="text" id="startDate" class="datetime"> &nbsp;~ 
+			               <input type="text" id="startDate" name="startDate" class="datetime"> &nbsp;~ 
 			               <label class="form-label">반납일</label>
-			               <input type="text" id="endDate" class="datetime">
+			               <input type="text" id="endDate" name="endDate" class="datetime">
 		              </span>
                  </div>
                	<div  class="container-lg py-5">
-					<button type="button" class="btn btn-secondary text-yellow" style="float:right;">예약하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="submit" class="btn btn-secondary text-yellow" style="float:right;">예약하기</button>&nbsp;&nbsp;&nbsp;&nbsp;
+					
 					<button type="button" class="btn btn-secondary text-white" style="float:right; margin-right:10px;" >장바구니</button>
 				</div>
+				</form>
             </div>
         </div>
     	
@@ -243,7 +248,7 @@
  </script>
 
   <!-- 예약하기 버튼 -->
-  <script>
+  <!-- <script>
  	$(".btn.btn-secondary.text-yellow").click(function() {
  		location.href="/shop/buy"
  		
@@ -281,7 +286,7 @@
  			}	 */
  		});
  	});
- </script>
+ </script> -->
  
 <script>
 	$(function () {

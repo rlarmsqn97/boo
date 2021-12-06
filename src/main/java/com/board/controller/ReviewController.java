@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.dto.QnaDto;
-import com.board.dto.QnaPageDto;
 import com.board.dto.ReviewDto;
+import com.board.dto.ReviewPageDto;
 import com.board.service.ReviewService;
 
 @Controller
@@ -21,30 +21,30 @@ public class ReviewController {
 	@Inject
 	ReviewService service;
 	
-	// Qna 작성
+	// 이용후기 작성
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public void getWrite() throws Exception {
 	
 
 	}
 
-	// Qna 작성
+	// 이용후기 작성
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String postWrite(ReviewDto dto) throws Exception {
 		
 		service.write(dto);
 		
-		return "redirect:/board/qna/listPageSearch?num=1";
+		return "redirect:/board/review/listPageSearch?num=1";
 	}
 	
-	// Qna 조회
+	// 이용후기 조회
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public void getView(@RequestParam("bno") int bno, Model model) throws Exception {
 		ReviewDto dto = service.view(bno);
 		model.addAttribute("view",dto);
 	}
 	
-	// Qna 수정
+	// 이용후기 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public void getModify(@RequestParam("bno") int bno, Model model) throws Exception {
 		ReviewDto dto = service.view(bno);
@@ -53,28 +53,28 @@ public class ReviewController {
 		
 	}
 	
-	// Qna 수정
+	// 이용후기 수정
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String postModify(ReviewDto dto) throws Exception {
 		service.modify(dto);
 
-		return "redirect:/board/qna/view?bno=" + dto.getBno();
+		return "redirect:/board/review/view?bno=" + dto.getBno();
 	}
 	
-	// Qna 삭제
+	// 이용후기 삭제
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String getDelete(@RequestParam("bno") int bno) throws Exception {
 		service.delete(bno);
 		
-		return "redirect:/board/qna/listPageSearch?num=1";
+		return "redirect:/board/review/listPageSearch?num=1";
 	}
 	
-	// Qna 목록 + 페이징 추가 + 검색
+	// 이용후기 목록 + 페이징 추가 + 검색
 	@RequestMapping(value = "/listPageSearch", method = RequestMethod.GET)
 	public void getListPage(Model model, @RequestParam("num") int num, @RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
 			@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword) throws Exception {
 		
-		QnaPageDto page = new QnaPageDto();
+		ReviewPageDto page = new ReviewPageDto();
 		
 		page.setNum(num);
 		page.setCount(service.searchCount(searchType, keyword));
@@ -84,7 +84,7 @@ public class ReviewController {
 		page.setKeyword(keyword);
 		
 		
-		List<QnaDto> list = null; 
+		List<ReviewDto> list = null; 
 		list = service.listPageSearch(page.getDisplayPost(), page.getPostNum(), searchType, keyword);
 		
 		model.addAttribute("list",list);
