@@ -20,8 +20,8 @@
             value="jdbc:mysql://127.0.0.1:3306/boo">
         </property>
         <property name="username" value="root"></property>
-        <!-- <property name="password" value="1234"></property> -->
-        <property name="password" value="1111"></property> 
+        <property name="password" value="1234"></property>
+        <!-- <property name="password" value="1111"></property>  -->
     </bean>        
 
   <!-- mybatis SqlSessionFactoryBean -->

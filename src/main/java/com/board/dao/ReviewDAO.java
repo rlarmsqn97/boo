@@ -38,7 +38,7 @@ private static String namespace = "com.boo.mappers.reviewMapper";
 	}
 	
 	// 리뷰 목록 + 페이징 + 검색
-	public List<ReviewDto> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception {
+	public List<QnaDto> listPageSearch(int displayPost, int postNum, String searchType, String keyword) throws Exception {
 		
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		

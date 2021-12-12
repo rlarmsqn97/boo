@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>이용후기 작성</title>
+<title>QnA 작성</title>
     <%@ include file="../../include/mainmenu.jsp" %>
 </head>
 <body>

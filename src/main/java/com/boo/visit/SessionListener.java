@@ -1,50 +1,38 @@
 package com.boo.visit;
 
-import javax.inject.Inject;
-import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpSession;
+
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import com.boo.service.VisitCountService;
+import com.boo.dao.VisitDAO;
+import com.boo.dto.VisitVO;
 
-@WebListener
+
+
 public class SessionListener implements HttpSessionListener{
-	
-	@Inject
-	VisitCountService service;
-	
+
 	@Override
-	public void sessionCreated(HttpSessionEvent arg0) {
-	 
-	
-		 int todayCount = 0;
-	     int totalCount = 0;
-	        
-	        // 전체 방문자 수 +1
-	        try {
-	        	 service.visitcount();
-	             // 오늘 방문자 수
-	             todayCount = service.todaycount();
-	          
-	             // 전체 방문자 수
-	             totalCount = service.totalcount();
-	        } catch (Exception e) {
-	               // TODO Auto-generated catch block
-	               e.printStackTrace();
-	          }
+	public void sessionCreated(HttpSessionEvent arg0){
+		System.out.println("=========== 리스너 실행 ==========");
+		
+		  // DAO 객체 생성
+        VisitDAO dao = new VisitDAO();
+        VisitVO vo = new VisitVO();
+         
+        // 전체 방문자 수 +1
+        dao.aa();
+        try {
+			dao.total();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+         
 
-
-	         
-	        HttpSession session = arg0.getSession();
-	         
-	        // 세션 속성에 담아준다.
-	        session.setAttribute("totalCount", totalCount); // 전체 방문자 수
-	        session.setAttribute("todayCount", todayCount); // 오늘 방문자 수
-	         
-	        System.out.println("전체 방문자 수 : " + totalCount);
-	        System.out.println("오늘 방문자 수 : " + todayCount);
-	    }
+      
+		
+	}	     	      
+	    
 	
 	@Override
     public void sessionDestroyed(HttpSessionEvent arg0) {

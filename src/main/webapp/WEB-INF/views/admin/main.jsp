@@ -42,16 +42,11 @@
         </div>
         <div class="num-visitors item">
             <div class="item-caption">
-                <div class="item-title">금일 방문자수</div>
+                <div class="item-title">누적 방문자수</div>
             </div>
             <div class="item-content">
-                <div>${sessionScope.todayCount }</div>
-                <div>명</div>               
-            </div>
-            
-            <div class="item-content">
-                <div>${sessionScope.totalCount }</div>
-                <div>명</div>               
+                <div th:text="${numVisitors}">0</div>
+                <div>명</div>
             </div>
         </div>
         <div class="recent-order item">

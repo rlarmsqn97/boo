@@ -62,69 +62,70 @@
             </div>
         </section>
         <!-- Cart Page Section Begin -->
-	<div class="cart-page">
-		<div class="container">
-			<div class="row pt-5">
-				<div
-					class="worksingle-content col-lg-8 m-auto text-left justify-content-center">
-					<img class="img-fluid border rounded" src="${view.pdThumbImg }"
-						alt="Card image cap">
-					<div style="margin-left: 210px;">
-						<label class="form-label">상품명 : ${view.pdName }</label><br> <label
-							class="form-label">사용연령 : ${view.pdAge }</label><br> <label
-							class="form-label">가격 : </label>
-						<fmt:formatNumber pattern="###,###,###" value="${view.pdPrice * c}"></fmt:formatNumber>
-						<br> <label class="form-label"> 구입 수량 : <input
-							type="text" class="numBox" value="${c }" readonly="readonly" />
-						</label><br> <span> <label class="form-label">대여일</label> <input
-							type="text" id="startDate" class="datetime" value="${s }">
-							&nbsp;~ <label class="form-label">반납일</label> <input type="text"
-							id="endDate" class="datetime" value="${e }">
-						</span>
-					</div>
-				</div>
-			</div>
+        <div class="cart-page">
+            <div class="container">
+                 <div class="row pt-5">
+            <div class="worksingle-content col-lg-8 m-auto text-left justify-content-center">
+               <img class="img-fluid border rounded" src="${view.pdThumbImg }" alt="Card image cap">
+                  <div style="margin-left:210px;">
+		               <label class="form-label">상품명 : ${view.pdName }</label><br>
+		              	<label class="form-label">사용연령 : ${view.pdAge }</label><br>
+		              	<label class="form-label">가격 : </label><fmt:formatNumber pattern="###,###,###" value="${view.pdPrice }"></fmt:formatNumber><br>
+		             <%--  	<label class="form-label">
+		              	구입 수량 : <input type="text" class="numBox" value="${c }" readonly="readonly" />
+		              	</label><br>
+		              	    
+		              <span>
+			               <label class="form-label">대여일</label>       
+			               <input type="text" id="startDate" class="datetime" value="${s }"> &nbsp;~ 
+			               <label class="form-label">반납일</label>
+			               <input type="text" id="endDate" class="datetime" value="${e }">
+		              </span> --%>
+                 </div>
+            </div>
+        </div>
+    	
+                     <div class="orderInfo">                            
+		 <form role="form" method="post" autocomplete="off">
+		    
+		  <input type="hidden" name="amount" id="amount"/>
+		    
+		  <div class="inputArea">
+		   <label for="">예약자이름 :</label>
+		   <input type="text" name="orderName" id="orderName" value="${user.userName }" required="required" />
+		  </div>
+		  
+		  <div class="inputArea">
+		   <label for="orderPhon">예약자 번호 :</label>
+		   <input type="text" name="orderPhon" id="orderPhon" value="${user.userPhon }" required="required" />
+		  </div>
+		  
+		  
+		  <div class="inputArea">
+		   <label for="userAddr1">렌터카회사명 : </label>
+		   <input type="text" name="rentCar" id="rentCar"  required="required" />
+		  </div>
+		  
+		  <div class="inputArea">
+		   <label for="userAddr2">요청사항</label>
+		   <input type="text" name="reQu" id="reQu" required="required" />
+		  </div>
 
-			<div class="orderInfo">
-				<form role="form" method="post" autocomplete="off">
-
-					<input type="hidden" name="amount" id="amount" value="${view.pdPrice }" />
-
-					<div class="inputArea">
-						<label for="">예약자이름 :</label> <input type="text" name="orderName"
-							id="orderName" value="${user.userName }" required="required" />
-					</div>
-
-					<div class="inputArea">
-						<label for="orderPhon">예약자 번호 :</label> <input type="text"
-							name="orderPhon" id="orderPhon" value="${user.userPhon }"
-							required="required" />
-					</div>
-
-
-					<div class="inputArea">
-						<label for="userAddr1">렌터카회사명 : </label> <input type="text"
-							name="rentCar" id="rentCar" required="required" />
-					</div>
-
-					<div class="inputArea">
-						<label for="userAddr2">요청사항</label> <input type="text" name="reQu"
-							id="reQu" required="required" />
-					</div>
-
-					<div class="inputArea">
-						<button type="submit" class="order_btn">예약하기</button>
-						<button type="button" class="cancel_btn">취소</button>
-					</div>
-
-
-				</form>
-			</div>
+		  <div class="inputArea">
+		   <button type="submit" class="order_btn">예약하기</button>
+		   <button type="button" class="cancel_btn">취소</button>		 
+		  </div>
+		  
+		  
+		 </form> 
 		</div>
-
-	</div>
-	
-	
+                        </div>
+                      
+                </div>
+            </div>          
+      
+      
+        <!-- Cart Page Section End -->
  
  
  	<footer class="bg-secondary pt-4" style="bottom: 0; width: 100%">

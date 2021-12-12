@@ -25,7 +25,8 @@
 		update qna_board
 			set
 				title = #{title},
-				content = #{content}
+				content = #{content},
+				userName = #{userName}
 			where bno = #{bno}
 	</update>
 	
@@ -55,8 +56,8 @@
 		   or content LIKE concat('%', #{keyword}, '%')
 		 </if>
 		 
-		 <if test='searchType.equals("userName")'>
-		  WHERE userName LIKE concat('%', #{keyword}, '%')
+		 <if test='searchType.equals("writer")'>
+		  WHERE writer LIKE concat('%', #{keyword}, '%')
 		 </if>
  
 		order by bno desc

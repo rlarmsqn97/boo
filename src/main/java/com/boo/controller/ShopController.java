@@ -174,8 +174,9 @@ public class ShopController {
 	}
 	
 	// 단일 상품 주문
+
 	@RequestMapping(value = "/buy", method = RequestMethod.GET)
-	public void getBuy(Model model,String startDate,String endDate,String pdnum,String cartStock) throws Exception{
+	public void getBuy(HttpSession session,Model model,String startDate,String endDate, String pdnum, String cartStock) throws Exception{
 
 	  
 		int pdNum = Integer.parseInt(pdnum); 
@@ -201,36 +202,4 @@ public class ShopController {
 		System.out.println(endDate);
 		
 	}
-	
-	// 단일 상품 주문
-	@RequestMapping(value = "/buy", method = RequestMethod.POST)
-	public String postBuy(HttpSession session, OrderVO order, OrderDetailVO orderDetail,Model model) throws Exception {
-		
-		UserVO user = (UserVO)session.getAttribute("user");
-		String userId = user.getUserId();
-		model.addAttribute("user",user);
-		
-		Calendar cal = Calendar.getInstance();
-		int year = cal.get(Calendar.YEAR);
-		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
-		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));
-		String subNum = "";
-		
-		for(int i = 1; i <= 6; i++) {
-			subNum += (int)(Math.random() * 10);
-		}
-		
-		String orderId = ymd + "_" + subNum;
-		order.setOrderId(orderId);
-		order.setUserId(userId);
-		
-		service.orderInfo(order);
-		
-		orderDetail.setOrderId(orderId);
-		service.orderInfo_Details(orderDetail);
-		
-		
-		return "redirect:/shop/orderList";
-	}
-	
 }

@@ -7,24 +7,27 @@ import org.springframework.stereotype.Repository;
 
 import com.boo.dto.VisitVO;
 
+
+
 @Repository
-public class VisitCountDAO {
+public class VisitDAO {
 	
 	@Inject
 	private SqlSession sql;
 	
 	private static String namespace = "com.boo.mappers.visitcountMapper";
 	
-	public void visitcount() throws Exception {
-		sql.insert(namespace + ".visitcount");
-	}
-	
-	public void totalcount() throws Exception {
-		 sql.selectOne(namespace + ".totalcount");
-	}
-	
-	public void todaycount() throws Exception {
-		 sql.selectOne(namespace + ".todaycount");
-	}
+
+		public int visit(VisitVO vo) throws Exception{
+			return sql.insert(namespace + ".visitcount", vo);			
+		}
+		
+		public int total() throws Exception {
+			return sql.selectOne(namespace + ".total");
+		}
+		
+		public void aa() {
+			System.out.println("야야");
+		}
 
 }
